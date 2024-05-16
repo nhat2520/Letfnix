@@ -14,7 +14,7 @@ docker compose up -d --build
 ```
 
 ### Go to Pgadmin4 and connect to postgres server
-You can go to ("https://localhost:5050") and login using `PGADMIN_DEFAULT_EMAIL`, `PGADMIN_DEFAULT_PASSWORD` where 5050 is `PGADMIN_PORT`
+You can go to [localhost:5050](https://localhost:5050) and login using `PGADMIN_DEFAULT_EMAIL`, `PGADMIN_DEFAULT_PASSWORD` where 5050 is `PGADMIN_PORT`
 
 ![PGADMIN LOGIN IMAGE](images/PGADMIN_login.png)
 
@@ -34,8 +34,19 @@ PASSWORD is `POSTGRES_PASSWORD`
 
 Change `POSTGRES_HOST`=localhost
 
+### Create virtual environment
 ```bash
+python3 -m venv .venv && source .venv/bin/activate
 cd server
+```
+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Run server
+```bash
 python manage.py runserver 0.0.0.0:8000
 ```
 
@@ -43,7 +54,7 @@ python manage.py runserver 0.0.0.0:8000
 Change `POSTGRES_HOST`=db
 
 ```bash
-docker compose up -d --build
+docker compose up -d
 ```
 
-Go to ("http://localhost:8000")
+Go to [localhost:8000/helloworld](http://localhost:8000/helloworld)
