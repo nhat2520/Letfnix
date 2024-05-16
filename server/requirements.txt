@@ -1,5 +1,8 @@
 asgiref==3.8.1
 Django==5.0.6
+django-phonenumber-field==7.3.0
+phonenumberslite==8.13.36
+pillow==10.3.0
 psycopg==3.1.12
 psycopg-binary==3.1.12
 psycopg2-binary==2.9.9
