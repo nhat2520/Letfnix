@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/src
+    depends_on:
+    - db
+
+  db:
+    image: postgres
+    container_name: dev_postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: dev_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_PORT}
+    ports:
+      - "${PGADMIN_PORT}:${PGADMIN_PORT}"
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  db:
+  pgadmin:
