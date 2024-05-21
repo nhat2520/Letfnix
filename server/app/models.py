@@ -63,7 +63,6 @@ class Favorite_list(models.Model):
 
 
 class Category(models.Model):
-
     category_id = models.UUIDField(primary_key=True,
                                    default=uuid.uuid4(),
                                    editable=False,
@@ -98,7 +97,7 @@ class Cart(models.Model):
                                editable=False,
                                unique=True)
     quantity = models.IntegerField()
-    customer = models.ForeignKey(Customer,
+    customer = models.OneToOneField(Customer,
                                  on_delete=models.CASCADE,
                                  default=None)
 
@@ -132,3 +131,10 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.name
+
+class MovieCategory(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('movie', 'category')
