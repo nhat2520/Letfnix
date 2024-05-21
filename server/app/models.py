@@ -83,7 +83,7 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     customer = models.ForeignKey(Customer,
                                  on_delete=models.CASCADE,
-                                 blank=True)
+                                 null=True,)
     payment = models.ForeignKey(Payment,
                                 on_delete=models.CASCADE)
 
@@ -114,20 +114,18 @@ class Movie(models.Model):
     description = models.CharField(max_length=1000)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     trailer_url = models.CharField(100)
-    vote_average = models.DecimalField(max_digits=2, decimal_places=2)
+    vote_average = models.DecimalField(max_digits=4, decimal_places=3)
     poster_path = models.URLField(blank=True)
     backdrop_path = models.URLField(blank=True)
-    category = models.ForeignKey(Category,
-                                 on_delete=models.CASCADE)
     order = models.ForeignKey(Order,
                               on_delete=models.CASCADE,
-                              blank=True)
+                              null=True,)
     cart = models.ForeignKey(Cart,
                              on_delete=models.CASCADE,
-                             blank=True)
+                             null=True,)
     favorite_list = models.ForeignKey(Favorite_list,
                                     on_delete=models.CASCADE,
-                                    blank=True)
+                                    null=True,)
 
     def __str__(self):
         return self.name
@@ -138,3 +136,26 @@ class MovieCategory(models.Model):
 
     class Meta:
         unique_together = ('movie', 'category')
+
+
+# for index, row in df.iterrows():
+#     # Tạo một đối tượng Movie mới
+#     price = round(random.uniform(10.00, 99.99), 2)
+#     movie = Movie(
+#         movie_id=uuid.uuid4(),
+#         name=row['title'],
+#         description=row['overview'],
+#         price=price,
+#         trailer_url=row['url'],
+#         vote_average=row['vote_average'],
+#         poster_path=row['poster_path'],
+#         backdrop_path=row['backdrop_path']
+#     )
+#     movie.save()
+#     for category_id in row['genres']:
+#         movie_category = MovieCategory(
+#             movie=movie,
+#             category_id=category_id
+#         )
+#         movie_category.save()
+# print()
