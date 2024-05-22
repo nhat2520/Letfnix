@@ -44,12 +44,25 @@ cd server
 ```bash
 pip install -r requirements.txt
 ```
-
 ### Run debug frontend
 ```bash
-python manage tailwind install
-python manage tailwind start
+python manage.py tailwind install
+python manage.py tailwind start
 ```
+### Intial Data 
+
+```bash
+python manage.py shell
+```
+paste this to create
+
+```bash
+with open('my_script.py') as f:
+    code = f.read()
+    exec(code)
+```
+
+
 ### Run server
 ```bash
 python manage.py runserver 0.0.0.0:8000
