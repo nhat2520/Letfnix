@@ -31,6 +31,7 @@ CATEGORY_CHOICES = [
     ('WES', 'Western')
 ]
 
+
 # Create your models here.
 class Customer(models.Model):
     customer_id = models.UUIDField(primary_key=True,
@@ -62,9 +63,9 @@ class Payment(models.Model):
 
 class Favorite_list(models.Model):
     favorite_list_id = models.UUIDField(primary_key=True,
-                                default=uuid.uuid4(),
-                                editable=False,
-                                unique=True)
+                                        default=uuid.uuid4(),
+                                        editable=False,
+                                        unique=True)
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)    
 
     def __str__(self):
@@ -105,8 +106,8 @@ class Cart(models.Model):
                                unique=True)
     quantity = models.IntegerField()
     customer = models.OneToOneField(Customer,
-                                 on_delete=models.CASCADE,
-                                 default=None)
+                                    on_delete=models.CASCADE,
+                                    default=None)
 
     def __str__(self):
         return self.cart_id
@@ -131,11 +132,12 @@ class Movie(models.Model):
                              on_delete=models.CASCADE,
                              null=True,)
     favorite_list = models.ForeignKey(Favorite_list,
-                                    on_delete=models.CASCADE,
-                                    null=True,)
+                                      on_delete=models.CASCADE,
+                                      null=True,)
 
     def __str__(self):
         return self.name
+
 
 class MovieCategory(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -143,5 +145,3 @@ class MovieCategory(models.Model):
 
     class Meta:
         unique_together = ('movie', 'category')
-
-
