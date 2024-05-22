@@ -45,6 +45,11 @@ cd server
 pip install -r requirements.txt
 ```
 
+### Run debug frontend
+```bash
+python manage tailwind install
+python manage tailwind start
+```
 ### Run server
 ```bash
 python manage.py runserver 0.0.0.0:8000
