@@ -8,18 +8,27 @@ PAYMENT_METHOD_CHOICES = [
         ('PP', 'PayPal'),
         ('ST', 'STRIPE'),
     ]
+
 CATEGORY_CHOICES = [
-    ('SF', 'Science Fiction'),
-    ('ADV', 'Adventure'),
     ('ACT', 'Action'),
-    ('FAN', 'Fantasy'),
+    ('ADV', 'Adventure'),
+    ('ANI', 'Animation'),
     ('COM', 'Comedy'),
-    ('DRA', 'Drama'),
-    ('THR', 'Thriller'),
     ('CRI', 'Crime'),
-    ('WAR', 'War'),
+    ('DOC', 'Documentary'),
+    ('DRA', 'Drama'),
+    ('FAM', 'Family'),
+    ('FAN', 'Fantasy'),
+    ('HIS', 'History'),
+    ('HOR', 'Horror'),
+    ('MUS', 'Music'),
     ('MYS', 'Mystery'),
-    ('HOR', 'Horror')
+    ('ROM', 'Romance'),
+    ('SF', 'Science Fiction'),
+    ('TVM', 'TV Movie'),
+    ('THR', 'Thriller'),
+    ('WAR', 'War'),
+    ('WES', 'Western')
 ]
 
 # Create your models here.
@@ -62,12 +71,10 @@ class Favorite_list(models.Model):
         return self.favorite_list_id
 
 
+
 class Category(models.Model):
-    category_id = models.UUIDField(primary_key=True,
-                                   default=uuid.uuid4(),
-                                   editable=False,
-                                   unique=True)
-    name = models.CharField(choices=CATEGORY_CHOICES)
+    category_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=50, choices=CATEGORY_CHOICES, unique=True)
 
     def __str__(self):
         return self.name
@@ -138,24 +145,3 @@ class MovieCategory(models.Model):
         unique_together = ('movie', 'category')
 
 
-# for index, row in df.iterrows():
-#     # Tạo một đối tượng Movie mới
-#     price = round(random.uniform(10.00, 99.99), 2)
-#     movie = Movie(
-#         movie_id=uuid.uuid4(),
-#         name=row['title'],
-#         description=row['overview'],
-#         price=price,
-#         trailer_url=row['url'],
-#         vote_average=row['vote_average'],
-#         poster_path=row['poster_path'],
-#         backdrop_path=row['backdrop_path']
-#     )
-#     movie.save()
-#     for category_id in row['genres']:
-#         movie_category = MovieCategory(
-#             movie=movie,
-#             category_id=category_id
-#         )
-#         movie_category.save()
-# print()
