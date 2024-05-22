@@ -57,7 +57,7 @@ python manage.py shell
 paste this to create
 
 ```bash
-with open('my_script.py') as f:
+with open('initialData.py') as f:
     code = f.read()
     exec(code)
 ```
