@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+from django.db.models import Q
 
+from .models import Movie
 from .forms import RegisterForm
 
 
@@ -11,7 +13,13 @@ def helloworld(request):
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    movies = Movie.objects.all()
+    return render(request, 'home.html', {"movies": movies})
+
+
+def movie(request, pk):
+    movie = Movie.objects.get(movie_id=pk)
+    return render(request, "movie.html", {"movie": movie})
 
 
 def login_view(request):
@@ -55,3 +63,22 @@ def register_view(request):
             return redirect('register')
     else:
         return render(request, 'register.html', {"form": form})
+
+
+def search_by_name(request):
+    if request.method == "POST":
+        searched = request.POST["searched"]
+
+        searched = Movie.objects.filter(Q(name__icontains=searched))
+
+        if not searched:
+            messages.success(request, 
+                             "Movie doesn't exist")
+            return render(request, "search.html", {})
+        else:
+            return render(request, "search.html", {"searched": searched})
+
+    else:
+        return render(request, "search.html", {})
+
+
