@@ -1,0 +1,38 @@
+{% load static tailwind_tags %}
+{% static 'img/login.jpeg' as background_url %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    {% tailwind_css %} 
+  </head>
+  <body class="relative">
+    <img src="{% static 'img/login.jpeg'%}" class="-z-10 h-screen w-screen">
+    <div class="absolute flex justify-center items-center top-0 left-0 h-screen w-screen">
+        <div class="w-[390px] pt-16 px-16 pb-20 bg-black  bg-opacity-[0.85] text-white">
+            <div class="logo flex justify-center mb-7">
+                <img src="{% static 'svg/logo.svg' %}" class="h-16">
+            </div>
+            <div class="form mb-14">
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <p class="font-semibold mb-4">Sign In</p>
+                    <input placeholder="username" type="name" name="username" id="username" class="h-12 w-full rounded-md mb-2 py-5 bg-[rgb(51,51,51)] placeholder:text-gray-500" style="padding-left: 12px;">
+                    <br>
+                    <input placeholder="password" type="password" name="password" id="password" class="h-12 w-full rounded-md mb-8 py-2 bg-[rgb(51,51,51)] placeholder:text-gray-500 border-0">
+                    <button type="submit" class="h-12 w-full bg-[#DC1C2C] rounded-md text-white">Sign In</button>
+                </form> 
+            </div>
+            
+            <div class="text-center text-sm mb-2 text-thin text-gray-400">New to Letfnix? <a href="/register" class="font-semibold text-white">Sign up now</a></div>
+            <div class="text-center text-sm text-thin text-gray-400">Sign up to start your journey at<p class="font-bold text-[#DC1C2C]">Letfix</p>
+        </div>
+    </div>
+  </body>
+</html>

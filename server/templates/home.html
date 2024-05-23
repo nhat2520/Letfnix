@@ -1,12 +1,139 @@
 {% load static tailwind_tags %}
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% tailwind_css %}
-</head>
-<body> 
-    <p class="text-red-700 mt-4 text-4xl font-bold">hello guy</p>
-</body> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    {% tailwind_css %}    
+  </head>
+  <body class="overflow-x-auto">
+    <div class="bg-[#192026] flex flex-col p-[24px_83px_10px_83px] w-screen box-sizing-border">
+
+        <!-- TODO: Navbar -->
+        <div class="rounded-[37px] m-[0_0_40px_0] flex flex-row justify-between w-full box-sizing-border">
+            <div class="inline-block w-[276px] break-words font-['Poppins'] font-bold text-[#FFFFFF]">
+                <svg class="mt-[-5px]" height="55px" xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 1280 458"><path fill="#BF0000" fill-opacity=".1" d="M218.5 209.5c0 64.3.1 90.5.2 58.2.2-32.4.2-85 0-117-.1-32-.2-5.6-.2 58.8m353.9-97c0 11 .2 15.6.3 10.3.2-5.3.2-14.3 0-20-.1-5.7-.3-1.3-.3 9.7M861.5 229c0 74.5.1 105 .2 67.8.2-37.3.2-98.3 0-135.5-.1-37.3-.2-6.8-.2 67.7m75 .5c0 74.8.1 105.3.2 67.7.2-37.6.2-98.8 0-136-.1-37.2-.2-6.5-.2 68.3M289.4 346c0 10.7.2 15.1.3 9.7.2-5.3.2-14.1 0-19.5-.1-5.3-.3-.9-.3 9.8"/><path fill="#BF0000" fill-opacity=".3" d="M186.3 92.7c5.9.2 15.5.2 21.5 0 5.9-.1 1-.3-10.8-.3s-16.7.2-10.7.3m181.7 0 58 .3.3 18.8.3 18.7-.1-19v-19H310zm71.7 0c-.5.7 47.4.7 108.3 0 12.9-.1-6.1-.3-42.2-.5-36.1-.1-65.9.1-66.1.5m153 0c-.5.7 41.3.7 92.8 0 11-.1-5.3-.3-36.2-.5-30.9-.1-56.4.1-56.6.5m143.3 0c23.7.7 44.8.7 44.3 0-.2-.4-12.4-.6-27.1-.5s-22.4.3-17.2.5m96.8 0c5 .2 13.4.2 18.5 0 5-.1.9-.3-9.3-.3s-14.3.2-9.2.3m70.5 0c5.9.2 15.5.2 21.5 0 5.9-.1 1-.3-10.8-.3s-16.7.2-10.7.3m66.5 0c6.1.2 16.3.2 22.5 0 6.1-.1 1.1-.3-11.3-.3s-17.4.2-11.2.3m103 0c5.7.2 14.7.2 20 0 5.3-.1.7-.3-10.3-.3s-15.4.2-9.7.3M822 173.2c-.3 44.4-.2 80.4.3 79.9.4-.4.6-36.7.5-80.7l-.3-79.9zm-469.5-5.7c0 19.8.1 28 .2 18.3.2-9.7.2-25.9 0-36-.1-10.1-.2-2.1-.2 17.7m0 117c0 23.1.1 32.4.2 20.7.2-11.7.2-30.6 0-42-.1-11.4-.2-1.8-.2 21.3m73.9 61c0 10.4.2 14.6.3 9.2.2-5.4.2-13.9 0-19-.1-5.1-.3-.7-.3 9.8"/><path fill="#BF0000" fill-opacity=".2" d="M892.5 229.5c0 74.8.1 105.3.2 67.7.2-37.6.2-98.8 0-136-.1-37.2-.2-6.5-.2 68.3m-365 18.5c0 64.1.1 90.3.2 58.3.2-32.1.2-84.5 0-116.5-.1-32.1-.2-5.9-.2 58.2"/><path fill="#BF0000" fill-opacity=".4" d="M726.5 229.5v136h18.8l18.7.1-18.5-.3-18.5-.3-.3-135.8-.2-135.7zm-287.1-117c0 10.4.2 14.6.3 9.2.2-5.4.2-13.9 0-19-.1-5.1-.3-.7-.3 9.8m153.1 117.2v135.8H613l20.5.1-20.2-.3-20.3-.3-.3-135.5-.2-135.5zm43-60.2v38H690l-27-.2-27-.3-.3-37.8-.2-37.7zm-268.2 34.2c8.2.2 21.2.2 29 0 7.8-.1 1.2-.3-14.8-.3-15.9 0-22.3.2-14.2.3m268.2 101.8c0 32.4.1 45.6.2 29.2.2-16.4.2-43 0-59-.1-16.1-.2-2.7-.2 29.8m186-51.5c-.3.5-.1 1 .4 1 .6 0 1.1-.5 1.1-1 0-.6-.2-1-.4-1-.3 0-.8.4-1.1 1M175.9 365.3c.4.4 25.9.6 56.7.5l55.9-.3-56.7-.5c-31.2-.3-56.4-.2-55.9.3m641 0c.4.4 10.4.6 22.2.5l21.4-.3-22.2-.5c-12.2-.3-21.9-.2-21.4.3m97.1-.3-21.5.6 21.2.2c13.3.1 21.4-.2 21.8-.8.3-.6.5-.9.3-.8s-10 .5-21.8.8m-575.2.7c16.1.2 42.2.2 58 0 15.8-.1 2.6-.2-29.3-.2s-44.8.1-28.7.2m156.5 0c5.9.2 15.4.2 21 0 5.6-.1.8-.3-10.8-.3-11.5 0-16.1.2-10.2.3m471.5 0c5.7.2 14.7.2 20 0 5.3-.1.7-.3-10.3-.3s-15.4.2-9.7.3m104 0c6.1.2 16.3.2 22.5 0 6.1-.1 1.1-.3-11.3-.3s-17.4.2-11.2.3"/><path fill="#BF0000" fill-opacity=".8" d="M186.3 93.7c5.9.2 15.5.2 21.5 0 5.9-.1 1-.3-10.8-.3s-16.7.2-10.7.3m181.4 0 57.3.3.3 18.3.3 18.2-.1-18.5V93.5h-115zm105.1 0c18.4.2 48.1.2 66 0 18-.1 3-.2-33.3-.2s-51 .1-32.7.2m176.2 0 56 .3.3 18.8.3 18.7-.1-19v-19H593zm91.3 0c7.6.2 19.8.2 27 0 7.3-.1 1.1-.3-13.8-.3-14.8 0-20.8.2-13.2.3m92.5 0c5 .2 13.4.2 18.5 0 5-.1.9-.3-9.3-.3s-14.3.2-9.2.3m70.5 0c5.9.2 15.5.2 21.5 0 5.9-.1 1-.3-10.8-.3s-16.7.2-10.7.3m66.5 0c6.1.2 16.3.2 22.5 0 6.1-.1 1.1-.3-11.3-.3s-17.4.2-11.2.3m92.9 0c-.3.5 5.4.7 12.6.5 24.7-.4 27.2-.8 7.5-1-10.8-.1-19.9.1-20.1.5m-711.2 73.8c0 19.8.1 28 .2 18.3.2-9.7.2-25.9 0-36-.1-10.1-.2-2.1-.2 17.7m174.7 80.2L526 364l-20.7.3-20.8.2 20.8.3c15.9.1 20.9-.1 21.2-1 .3-.7.4-53.3.3-116.8l-.3-115.5zM634.5 170c0 20.6.1 29.1.2 18.7.2-10.3.2-27.1 0-37.5-.1-10.3-.2-1.8-.2 18.8m163.6-3.4c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m3 12c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m-433.8 26.1c8.1.2 21.3.2 29.5 0 8.1-.1 1.4-.3-14.8-.3s-22.9.2-14.7.3m282 4c7.5.2 19.9.2 27.5 0 7.5-.1 1.3-.3-13.8-.3s-21.3.2-13.7.3m-297.8 75.8c0 23.1.1 32.4.2 20.7.2-11.7.2-30.6 0-42-.1-11.4-.2-1.8-.2 21.3m283.2-37.8c-.4.3-.7 26.9-.7 58.9V364l-20.7.3-20.8.3 21-.1h21l.5-59.3c.3-32.5.5-59.2.4-59.2 0 0-.4.3-.7.7m-209.5 98.5L425 364l-57.7.3-57.8.2 57.8.3c46.3.2 57.9-.1 58.3-1.1.2-.7.3-9.4.1-19.2l-.2-18zm-221.4 19.5c15.5.2 40.9.2 56.5 0 15.5-.1 2.8-.2-28.3-.2s-43.8.1-28.2.2m532.5 0c5.4.2 13.9.2 19 0 5.1-.1.7-.3-9.8-.3-10.4 0-14.6.2-9.2.3m90.9 0c5.9.2 15.8.2 22 0 6.2-.1 1.4-.3-10.7-.3s-17.2.2-11.3.3m139.6 0c5.7.2 14.7.2 20 0 5.3-.1.7-.3-10.3-.3s-15.4.2-9.7.3m104 0c6.1.2 16.3.2 22.5 0 6.1-.1 1.1-.3-11.3-.3s-17.4.2-11.2.3"/><path fill="#BF0000" fill-opacity=".5" d="M175.5 229c0 74.5.1 105 .2 67.8.2-37.3.2-98.3 0-135.5-.1-37.3-.2-6.8-.2 67.7m760 0c0 74.5.1 105 .2 67.8.2-37.3.2-98.3 0-135.5-.1-37.3-.2-6.8-.2 67.7M288.4 346c0 10.7.2 15.1.3 9.7.2-5.3.2-14.1 0-19.5-.1-5.3-.3-.9-.3 9.8"/><path fill="#BF0000" fill-opacity=".7" d="M571.4 112.5c0 10.4.2 14.6.3 9.2.2-5.4.2-13.9 0-19-.1-5.1-.3-.7-.3 9.8M484.5 249c0 64.1.1 90.3.2 58.3.2-32.1.2-84.5 0-116.5-.1-32.1-.2-5.9-.2 58.2"/><path fill="#BF0000" fill-opacity=".6" d="M309.5 229.5c0 74.8.1 105.3.2 67.7.2-37.6.2-98.8 0-136-.1-37.2-.2-6.5-.2 68.3m551-.5c0 74.5.1 105 .2 67.8.2-37.3.2-98.3 0-135.5-.1-37.3-.2-6.8-.2 67.7m-489.7-97.3c10 .2 26.4.2 36.5 0 10-.1 1.8-.2-18.3-.2s-28.3.1-18.2.2m80 0c6.1.2 16.3.2 22.5 0 6.1-.1 1.1-.3-11.3-.3s-17.4.2-11.2.3m87.4 0c5.9.2 15.8.2 22 0 6.2-.1 1.4-.3-10.7-.3s-17.2.2-11.3.3m114.5 0c9.4.2 25.2.2 35 0 9.8-.1 2.1-.2-17.2-.2-19.2-.1-27.3.1-17.8.2m111.8 133.8c0 54.5.1 76.6.2 49.2.2-27.4.2-72 0-99-.1-27.1-.2-4.7-.2 49.8M690.4 227c0 10.2.2 14.3.3 9.2.2-5 .2-13.4 0-18.5-.1-5-.3-.9-.3 9.3m-323.1 15.7c8.1.2 21.3.2 29.5 0 8.1-.1 1.4-.3-14.8-.3s-22.9.2-14.7.3m282 4c7.5.2 19.9.2 27.5 0 7.5-.1 1.3-.3-13.8-.3s-21.3.2-13.7.3m-414 80c9.7.2 25.7.2 35.5 0 9.7-.1 1.7-.2-17.8-.2s-27.5.1-17.7.2m135.5 0c10 .2 26.4.2 36.5 0 10-.1 1.8-.2-18.3-.2s-28.3.1-18.2.2"/><g fill="#BF0000" fill-opacity=".9" stroke-opacity=".9" stroke-width="0"><path d="m176.2 229.2.3 135.3.2-134.7L177 95l20.8-.3 20.7-.2-21.2-.3L176 94zm134 0 .3 135.3.2-134.7L311 95l57.3-.3 57.2-.2-57.7-.3L310 94zm130-116.5.3 18.8.2-18.2.3-18.3 65.3-.3 65.2-.2-65.7-.3L440 94zm153 116.5.3 135.3.2-134.7L594 95l55.8-.3 55.7-.2-56.2-.3L593 94zm134 0 .3 135.3.2-134.7L728 95l26.3-.3 26.2-.2-26.7-.3L727 94zM823 175c0 48.4-.4 81-.9 81s-1.2-.6-1.4-1.3c-.3-.6-.6-.8-.6-.2 0 .5.3 1.6.8 2.4.8 1.2 1.2 1.2 2.5.2 1.4-1.2 1.6-9.8 1.6-81.7V95l17.8-.3 17.7-.2-18.7-.3L823 94zm70.2 54.2.3 135.3h21l21 .1-20.7-.3-20.8-.3V95l20.8-.3 20.7-.2-21.3-.3L893 94zm89.5-69.1 23.3 66-17.1 47.7c-22.1 61.7-32.2 90.9-31.1 89.7.5-.6 4.1-10.2 8-21.5s9.6-27.5 12.7-36 10.8-30.1 17.2-47.9l11.5-32.5-10-28c-5.5-15.5-15.9-44.7-23.1-64.9-7.2-20.3-13.1-37-13.1-37.2 0-.3 9.6-.6 21.3-.8l21.2-.2-22.1-.3-22.1-.2zm79.2-63.4c-.6 1.6-7.1 21.1-14.5 43.5-10.2 30.8-13.9 40.8-15.2 41-1.2.2-1.3.6-.5 1.1.7.5 1.8-.1 2.7-1.5 1.3-2.1 10.5-29.1 23.7-69.5l5.3-16.3 19.5-.3 19.6-.2-19.8-.3-19.7-.2z"/><path d="M780.1 97.6c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m1 3.2c-.1 2 9.2 37.7 9.6 36.6.1-.5-1.9-9.2-4.6-19.4s-5-17.9-5-17.2M484.8 205.7c.1 41.2.3 93.7.5 116.8.1 23.1.3-10.5.5-74.8.1-64.2-.1-116.7-.5-116.7-.5 0-.7 33.6-.5 74.7m306.3-65.1c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m1 4c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m290.5.9c-.9 2.6-.7 3.2.5 1.2.6-1 .9-2.1.6-2.3-.2-.3-.7.2-1.1 1.1m-289.5 3.1c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m1 4c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m1 4c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m1 4c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m280 3.5c-.6 1.8-.9 3.4-.7 3.6s.9-1 1.5-2.8.9-3.4.7-3.6-.9 1-1.5 2.8m-310.9 2.3c.8.7 2.9 7.2 4.6 14.2 3.7 15 22.5 87.5 37.3 144.1 5.6 21.6 10.4 39.1 10.6 38.9s-6-24.8-13.8-54.7c-7.7-29.9-18.8-72.9-24.5-95.4-5.8-22.6-10.9-42.7-11.5-44.8-.6-2.2-1.6-3.7-2.5-3.7-1.3 0-1.3.2-.2 1.4m302 23.3c-4 11.3-7.1 20.7-6.9 20.9s3.6-8.8 7.6-20.2c4-11.3 7.1-20.7 6.9-20.9s-3.6 8.9-7.6 20.2m-716 14.3c.4 1.3 4.7 1.5 29.6 1.8l29.2.2v35h-29.5c-16.2 0-29.5.3-29.5.7 0 .5 13.5.7 30 .5l30-.3V205h-28.8c-21.7 0-29.1-.3-30.1-1.3-1.1-1-1.3-.9-.9.3m283 4c.4 1.3 4.5 1.5 27.6 1.8l27.2.2v35h-26.9c-14.9 0-27.2.3-27.4.7-.3.5 12 .7 27.4.5l27.9-.3V209h-26.8c-20.1 0-27.1-.3-28.1-1.3-1.1-1-1.3-.9-.9.3m424.9 5.6c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3m.9 26.9c0 1.5 9.4 27.5 9.8 27.1.3-.4-8.6-26.6-9.4-27.5-.2-.2-.4 0-.4.4m-32.5 29.5c-.3.5 0 .7.9.4 1.4-.6 7 15.6 26.6 77.4 2.9 9 5.4 16.1 5.7 15.9.7-.8-28.3-91.3-30-93.5-1.1-1.5-2.4-1.6-3.2-.2M351 327.2c0 .5 16.8.7 37.3.6 20.4-.1 31.4-.4 24.2-.5-32.9-.7-61.5-.7-61.5-.1m-115.7.5c9.7.2 25.7.2 35.5 0 9.7-.1 1.7-.2-17.8-.2s-27.5.1-17.7.2"/></g><path fill="#BF0000" d="M177 229.5V364h111v-36h-70V95h-41zm134 0V364h114v-36h-74v-87h59v-35l-29.2-.2-29.3-.3-.3-37.3-.2-37.2h74V95H311zM441 113v18h45v233h40V131h45V95H441zm153 116.5V364h40l.2-59.3.3-59.2 27.3-.3 27.2-.2v-35l-27.2-.2-27.3-.3-.3-39.3-.2-39.2h71V95H594zm134 0V364h36v-99.5c0-86.6.2-99.5 1.5-99.5.8 0 1.8 1.6 2.4 3.7s5.7 22.2 11.5 44.8c5.7 22.5 16.2 63.5 23.4 91s13.6 52.1 14.2 54.7l1.2 4.8H860V95h-35v80.3c0 80.1-.1 82.7-3.2 82.7-.4 0-1.2-1.7-1.7-3.8-.5-2-8.7-33.9-18.2-70.7-9.4-36.9-18.4-71.8-19.8-77.8L779.5 95H728zm166 0V364h41V95h-41zm67-134.1c0 .3 5.9 17 13.1 37.3 7.2 20.2 17.6 49.4 23.1 64.9l10 28-11.5 32.5c-6.4 17.8-14.1 39.4-17.2 47.9s-9 25.1-13.1 36.7L958 364h37.5l16-47.1c8.7-25.9 16.3-47.3 16.8-47.6 2.3-1.4 2.4-1.1 30 84.9l3.1 9.8h20.8c11.4 0 20.8-.3 20.8-.7s-9.6-28-21.4-61.3c-25.5-72.2-25.9-73.5-25.3-76.9 1.6-8.9 8.1-28.1 35.7-104.6 4.9-13.8 9-25.1 9-25.3 0-.1-8.5-.2-18.8-.2h-18.8l-5.3 16.2c-13.3 40.9-22.4 67.5-23.8 69.7-.8 1.3-1.8 1.9-2.3 1.5-.4-.5-7.2-20.4-15-44.2L1002.8 95h-20.9c-11.5 0-20.9.2-20.9.4"/></svg>
+            </div>
+            <div class="m-[8px_0_8px_0] flex flex-row justify-between w-[197.3px] h-[fit-content] box-sizing-border">
+                <span class="m-[0_16px_0_0] w-[79.2px] break-words font-['Poppins'] font-normal text-[18px] tracking-[1.3px] leading-[1.778] text-[#868686]">
+                    Home
+                </span>
+                <span class="font-['Poppins'] w-44 font-normal text-[18px] tracking-[1.3px] leading-[1.778] text-[#868686]">
+                    List anime
+                </span>
+            </div>
+            <div class="rounded-[37px] bg-[#374151] p-[8px_18px_8px_18px] w-[374.6px] box-sizing-border">
+                <span class="break-words font-['Poppins'] font-normal text-[18px] tracking-[1.3px] leading-[1.778] text-[#868686]">
+                    Search anime or movie
+                </span>
+            </div>
+        </div>
+
+        <!-- TODO: Explore -->
+        <div>
+            <div class="m-[0_52px_8px_52px] inline-block self-start break-words font-['Poppins'] font-semibold text-[32px] leading-[1.125] text-[#FFFFFF]"> 
+                Explore
+            </div>
+            <div class="m-[0_52px_24px_52px] inline-block self-start break-words font-['Poppins'] font-normal text-[22px] leading-[1.125] text-[#868686]">
+                What are you gonna watch today ?
+            </div>
+            <div class="rounded-[12px] bg-[url('../assets/images/spy_carousel_1.jpeg')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_52px_42px_52px] flex flex-col p-[200px_0_39px_47px] w-[fit-content] box-sizing-border">
+                <div class="rounded-[12px] bg-[linear-gradient(269.96deg,rgba(29,29,29,0)_0%,rgba(29,29,29,0.8)_99.5%)] absolute left-[0px] top-[0px] right-[0px] bottom-[0px] h-[100%]">
+                </div>
+                <div class="relative m-[0_0_16px_0] inline-block self-start break-words font-['Poppins'] font-semibold text-[36px] leading-[1.778] text-[var(--primary-white,#FFFFFF)]">
+                    Weather With You
+                </div>
+                <span class="relative self-start break-words font-['Poppins'] font-normal text-[16px] leading-[1.688] text-[var(--primary-white,#FFFFFF)]">
+                    Corrupt politicians, frenzied nationalists, and other warmongering forces constantly jeopardize the thin veneer of peace between neighboring countries Ostania and Westalis. 
+                </span>
+            </div>
+        </div>
+
+        <!-- TODO: New Realease -->
+        <div class="rounded-[12px] m-[0_52px_0_52px] flex flex-col w-[fit-content] box-sizing-border">
+            <div class="m-[0_0_24px_0] inline-block self-start break-words font-['Poppins'] font-semibold text-[36px] leading-[0.889] text-[#FFFFFF]">
+                New Realease
+            </div>
+            <div class="flex flex-row gap-[0_30px] w-[fit-content] box-sizing-border">
+                <div class="rounded-[12px] m-[0_0_23.8px_0] flex flex-col items-center w-[170px] h-[fit-content] box-sizing-border">
+                    <div class="rounded-[12px] bg-[url('../assets/images/one_piece_1.jpeg')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_0_9.3px_0] flex p-[218.9px_0_16.9px_1.2px] w-[170px] box-sizing-border">
+                        <div class="rounded-[12px] bg-[linear-gradient(180deg,rgba(29,29,29,0),#0F1E29)] absolute left-[50%] top-[48.9px] translate-x-[-50%] w-[170px] h-[204.9px]">
+                        </div>
+                        <span class="relative break-words font-['Poppins'] font-normal text-[16px] leading-[1.125] text-[#FFFFFF]">
+                            Episode 1018
+                        </span>
+                    </div>
+                    <span class="m-[0_0_0_3.5px] break-words font-['Poppins'] font-semibold text-[16px] text-[#FFFFFF]">
+                        One Piece
+                    </span>
+                </div>
+                <div class="rounded-[12px] flex flex-col items-center box-sizing-border">
+                    <div class="rounded-[12px] bg-[url('../assets/images/boruto_naruto_next_generations_1.jpeg')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_0_9px_0] flex p-[223.9px_0_12.1px_1.2px] w-[170px] box-sizing-border">
+                        <div class="rounded-[12px] bg-[linear-gradient(180deg,rgba(29,29,29,0),#0F1E29)] absolute left-[50%] top-[50px] translate-x-[-50%] w-[170px] h-[204px]">
+                        </div>
+                        <span class="relative break-words font-['Poppins'] font-normal text-[16px] leading-[1.125] text-[#FFFFFF]">
+                            Episode 250
+                        </span>
+                    </div>
+                    <span class="m-[0_7.4px_0_8.4px] text-center break-words font-['Poppins'] font-semibold text-[16px] text-[#FFFFFF]">
+                        Boruto Naruto Next Generations
+                    </span>
+                </div>
+                <div class="rounded-[12px] m-[0_0_24px_0] flex flex-col items-center w-[170px] h-[fit-content] box-sizing-border">
+                    <div class="rounded-[12px] bg-[url('../assets/images/spy_card_1.jpeg')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_0_9.2px_0] flex p-[218.9px_1.2px_16.9px_0] w-[170px] box-sizing-border">
+                        <div class="rounded-[12px] bg-[linear-gradient(180deg,rgba(29,29,29,0),#0F1E29)] absolute left-[50%] top-[48.9px] translate-x-[-50%] w-[170px] h-[204.9px]">
+                        </div>
+                        <span class="relative break-words font-['Poppins'] font-normal text-[16px] leading-[1.125] text-[#FFFFFF]">
+                            Episode 07
+                        </span>
+                    </div>
+                    <span class="m-[0_1.2px_0_0] break-words font-['Poppins'] font-semibold text-[16px] text-[#FFFFFF]">
+                        Spy X Family
+                    </span>
+                </div>
+                <div class="rounded-[12px] flex flex-col items-center w-[170px] box-sizing-border">
+                    <div class="rounded-[12px] bg-[url('../assets/images/attackontitan_1.png')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_0_9px_0] flex p-[223.9px_0_12.1px_1.2px] w-[170px] box-sizing-border">
+                        <div class="rounded-[12px] bg-[linear-gradient(180deg,rgba(29,29,29,0),#0F1E29)] absolute left-[50%] top-[50px] translate-x-[-50%] w-[170px] h-[204px]">
+                        </div>
+                        <span class="relative break-words font-['Poppins'] font-normal text-[16px] leading-[1.125] text-[#FFFFFF]">
+                            Episode 28
+                        </span>
+                    </div>
+                    <span class="m-[0_1.2px_0_0] text-center break-words font-['Poppins'] font-semibold text-[16px] text-[#FFFFFF]">
+                        Shingeki no kyoujin
+                    </span>
+                </div>
+                <div class="rounded-[12px] flex flex-col items-center w-[170px] box-sizing-border">
+                    <div class="rounded-[12px] bg-[url('../assets/images/captsu_card_1.jpeg')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_0_9px_0] flex p-[223.9px_0_12.1px_1.2px] w-[170px] box-sizing-border">
+                        <div class="rounded-[12px] bg-[linear-gradient(180deg,rgba(29,29,29,0),#0F1E29)] absolute left-[50%] top-[50px] translate-x-[-50%] w-[170px] h-[204px]">
+                        </div>
+                        <span class="relative break-words font-['Poppins'] font-normal text-[16px] leading-[1.125] text-[#FFFFFF]">
+                            Episode 28
+                        </span>
+                    </div>
+                    <span class="m-[0_1.2px_0_0] text-center break-words font-['Poppins'] font-semibold text-[16px] text-[#FFFFFF]">
+                        Captain Tsubasa
+                    </span>
+                </div>
+                <div class="rounded-[12px] m-[0_0_23.8px_0] flex flex-col items-center w-[170px] h-[fit-content] box-sizing-border">
+                    <div class="rounded-[12px] bg-[url('../assets/images/aoashi_card_1.jpeg')] bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_0_9.3px_0] flex p-[218.9px_0_16.9px_1.2px] w-[170px] box-sizing-border">
+                        <div class="rounded-[12px] bg-[linear-gradient(180deg,rgba(29,29,29,0),#0F1E29)] absolute left-[50%] top-[48.9px] translate-x-[-50%] w-[170px] h-[204.9px]">
+                        </div>
+                        <span class="relative break-words font-['Poppins'] font-normal text-[16px] leading-[1.125] text-[#FFFFFF]">
+                            Episode 28
+                        </span>
+                    </div>
+                    <span class="m-[0_1.2px_0_0] break-words font-['Poppins'] font-semibold text-[16px] text-[#FFFFFF]">
+                        Aoashi
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
 </html>

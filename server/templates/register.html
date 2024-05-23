@@ -1,0 +1,89 @@
+{% load static tailwind_tags %}
+{% static 'img/login.jpeg' as background_url %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    {% tailwind_css %} 
+  </head>
+  <body class="relative">
+    <img src="{% static 'img/login.jpeg' %}" class="-z-10 h-screen w-screen">
+    <div class="absolute flex justify-center items-center top-0 left-0 h-screen w-screen">
+        <div class="w-[390px] pt-16 px-16 pb-20 bg-black bg-opacity-[0.85] text-white">
+            <div class="logo flex justify-center mb-7">
+                <img src="{% static 'svg/logo.svg' %}" class="h-16">
+            </div>
+            <div class="form mb-10">
+                <form method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <p class="font-semibold mb-4">Sign Up</p>
+                    
+                    <!-- Hiển thị lỗi không liên quan đến trường -->
+                    {% for error in form.non_field_errors %}
+                        <div class="text-red-500">{{ error }}</div>
+                    {% endfor %}
+                    
+                    <!-- Hiển thị lỗi cho trường username -->
+                    <div class="mb-2">
+                        {% if form.username.errors %}
+                            <div class="text-red-500">{{ form.username.errors }}</div>
+                        {% endif %}
+                        <input type="text" name="username" id="username" value="{{ form.username.value }}" placeholder="User Name" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500" style="padding-left: 12px;">
+                    </div>
+
+                    <!-- Hiển thị lỗi cho các trường first_name và last_name -->
+                    <div class="grid grid-cols-[1fr_1fr] gap-2 w-full mb-2">
+                        <div>
+                            {% if form.first_name.errors %}
+                                <div class="text-red-500">{{ form.first_name.errors }}</div>
+                            {% endif %}
+                            <input type="text" name="first_name" id="firstname" value="{{ form.first_name.value }}" placeholder="First Name" class="w-full h-12 rounded-md bg-[rgb(51,51,51)] pl-3">
+                        </div>
+                        <div>
+                            {% if form.last_name.errors %}
+                                <div class="text-red-500">{{ form.last_name.errors }}</div>
+                            {% endif %}
+                            <input type="text" name="last_name" id="lastname" value="{{ form.last_name.value }}" placeholder="Last Name" class="w-full h-12 rounded-md bg-[rgb(51,51,51)] pl-3">
+                        </div>
+                    </div>
+                    
+                    <!-- Hiển thị lỗi cho trường email -->
+                    <div class="mb-2">
+                        {% if form.email.errors %}
+                            <div class="text-red-500">{{ form.email.errors }}</div>
+                        {% endif %}
+                        <input type="email" name="email" id="email" value="{{ form.email.value }}" placeholder="Email Address" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500 border-0">
+                    </div>
+
+                    <!-- Hiển thị lỗi cho trường password1 -->
+                    <div class="mb-2">
+                        {% if form.password1.errors %}
+                            <div class="text-red-500">{{ form.password1.errors }}</div>
+                        {% endif %}
+                        <input type="password" name="password1" id="password1" placeholder="Password" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500 border-0">
+                    </div>
+
+                    <!-- Hiển thị lỗi cho trường password2 -->
+                    <div class="mb-8">
+                        {% if form.password2.errors %}
+                            <div class="text-red-500">{{ form.password2.errors }}</div>
+                        {% endif %}
+                        <input type="password" name="password2" id="password2" placeholder="Confirm Password" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500 border-0">
+                    </div>
+                    
+                    <button type="submit" class="h-12 w-full bg-[#DC1C2C] rounded-md text-white">Sign Up</button>
+                </form>
+            </div>
+            
+            <div class="text-center text-sm mb-2 text-thin text-gray-400">Already have an account? <a href="/login" class="font-semibold text-white">Sign In now</a></div>
+        </div>
+    </div>
+  </body>
+</html>
