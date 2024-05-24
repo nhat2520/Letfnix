@@ -149,6 +149,8 @@ class Movie(models.Model):
     vote_average = models.DecimalField(max_digits=4, decimal_places=3)
     poster_path = models.URLField(blank=True)
     backdrop_path = models.URLField(blank=True)
+    nation = models.CharField(max_length=50, blank=True)
+    run_time = models.IntegerField(max_length=100)
     order = models.ForeignKey(Order,
                               on_delete=models.CASCADE,
                               null=True,)
