@@ -89,7 +89,7 @@ class UserInfoForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = (
-            "phone",
-            "avatar"
-            "date_of_birth"
+            "phone_number",
+            "avatar",
+            "date_of_birth",
         )
