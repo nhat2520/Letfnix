@@ -7,41 +7,9 @@ from .models import (
     Movie,
     Order,
     Payment,
+    Profile
 )
-
-
-# class CustomerAdmin(admin.ModelAdmin):
-#     list_display = [
-#         "firstname",
-#         "lastname",
-#         "email",
-#         "phone_number",
-#     ]
-
-#     list_filter = [
-#         "firstname",
-#         "lastname",
-#         "email",
-#         "phone_number",
-#     ]
-
-#     search_fields = [
-#         "email",
-#         "phone_number"
-#     ]
-
-
-# class MovieAdmin(admin.ModelAdmin):
-#     list_display = [
-#         "name",
-#         "description",
-#         "price",
-#         "vote_average"
-#     ]
-
-#     list_filter = ["name", "price"]
-
-#     search_fields = ["name"]
+from django.contrib.auth.models import User
 
 
 # Register your models here.
@@ -52,3 +20,23 @@ admin.site.register(Favorite_list)
 admin.site.register(Movie)
 admin.site.register(Order)
 admin.site.register(Payment)
+admin.site.register(Profile)
+
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+
+
+class UserAdmin(admin.ModelAdmin):
+    model = User
+    field = [
+        "username",
+        "first_name",
+        "last_name",
+        "email"
+    ]
+    inlines = [ProfileInline]
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
