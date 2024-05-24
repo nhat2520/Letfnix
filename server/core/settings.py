@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'tailwind',
-    'theme'
+    'theme',
+    'cart'
 ]
 
 MIDDLEWARE = [
