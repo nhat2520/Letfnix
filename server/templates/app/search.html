@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="ml-5">
+    <div class="text-white text-2xl font-semibold"><span class="text-red-600">Search Result For:</span> {{searched}}</div>
+    <div class="text-white text-2xl font-semibold"><span class="text-red-600">Total:</span> {{movies | length}}</div>
+    
+    {% for movie in movies %}
+        <a href="{% url 'movie' movie.movie_id %}">
+            <div class="w-[90%] mt-4 h-[225px] clear-both cursor-pointer">
+                <img class="rounded-xl float-left mr-2" width="150px" src={{movie.poster_path}} alt="">
+                <div class="float-left pl-3">
+                    <div class="text-2xl font-semibold text-white mb-3">
+                        {{movie.name}}
+                    </div>
+                    <div>
+                        <img src="{% static 'svg/star.svg' %}" class="float-left h-8">
+                        <span class="text-2xl font-semibold text-yellow-300 mt-2 ml-1">{{movie.vote_average}}</span>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-400 w-[900px] max-h-24 break-words">
+                        {{movie.description }}
+                    </p>
+                </div>
+                
+            </div>
+        </a>
+    {% endfor %}
+    
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+    <div class="m-[0_52px_8px_52px] inline-block self-start break-words font-['Poppins'] font-semibold text-[32px] leading-[1.125] text-[#FFFFFF]"> 
+        Discover all <span class="text-red-600"> {{cat}} </span> available!
+    </div> 
+
+    <div class="grid grid-cols-[165px_165px_165px_165px_165px_165px] gap-5 text-white font-['Poppins'] text-center">
+        {% for movie in movies %}
+            <a href="{% url 'movie' movie.movie_id %}">
+                <img src="{{movie.poster_path}}" alt="top_rating_film" class="rounded-lg">
+                <div class="truncate">{{movie.name}}</div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

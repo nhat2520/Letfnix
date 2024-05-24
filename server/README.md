@@ -43,6 +43,7 @@ cd server
 ### Install dependencies
 ```bash
 pip install -r requirements.txt
+npm install cross-env
 ```
 ### Run debug frontend
 ```bash

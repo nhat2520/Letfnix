@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.models import User
+import random
 
 from .models import (  # noqa
     Movie,
@@ -21,17 +22,23 @@ from .forms import (
 
 # Create your views here.
 def helloworld(request):
-    return render(request, 'helloworld.html', {})
+    return render(request, 'app/movie.html', {})
 
 
 def home(request):
+    categories = Category.objects.all()
     movies = Movie.objects.all()
-    return render(request, 'home.html', {"movies": movies})
+    random_movie = random.choice(movies)
+    print(random_movie)
+    recent_movies = Movie.objects.order_by('vote_average')[:6]
+    print(recent_movies)
+    return render(request, 'app/home.html', {"random_movie": random_movie, "recent_movies": recent_movies, "categories": categories})
 
 
 def movie(request, pk):
     movie = Movie.objects.get(movie_id=pk)
-    return render(request, "movie.html", {"movie": movie})
+    recent_movies = Movie.objects.order_by('vote_average')[:6]
+    return render(request, "app/movie.html", {"movie": movie, "recent_movies":recent_movies})
 
 
 def login_view(request):
@@ -47,7 +54,7 @@ def login_view(request):
             messages.success(request, "There was an error, ...")
             return redirect('login')
     else:
-        return render(request, 'login.html', {})
+        return render(request, 'auth/login.html', {})
 
 
 def logout_view(request):
@@ -74,20 +81,90 @@ def register_view(request):
             messages.success(request, "There have been a problem")
             return redirect('register')
     else:
-        return render(request, 'register.html', {"form": form})
+        return render(request, 'auth/register.html', {"form": form})
 
 
 def search_by_name(request):
     if request.method == "POST":
         searched = request.POST["searched"]
-
-        searched = Movie.objects.filter(Q(name__icontains=searched))
+        print(searched)
+        movies = Movie.objects.filter(Q(name__icontains=searched))
 
         if not searched:
-            messages.success(request, "Movie doesn't exist")
-            return render(request, "search.html", {})
+            print()
+            messages.success(request, 
+                             "Movie doesn't exist")
+            return render(request, "app/search.html", {})
         else:
-            return render(request, "search.html", {"searched": searched})
+            return render(request, "app/search.html", {"movies": movies, "searched": searched})
+
+    else: 
+        return render(request, "app/search.html", {})
+
+
+def update_user(request):
+    if request.user.is_authenticated:
+        curr_user = User.objects.get(id=request.user.id)
+        user_form = UpdateUserForm(request.POST or None,
+                                   instance=curr_user)
+
+        if user_form.is_valid():
+            user_form.save()
+
+            login(request, curr_user)
+            messages.success(request, "User has been updated")
+            return redirect("home")
+        return render(request, "update_user.html", {"user_form": user_form})
+    else:
+        messages.success(request, "You don't have permission to do this")
+        return redirect("login")
+
+
+def update_password(request):
+    if request.user.is_authenticated:
+        curr_user = request.user
+        if request.method == "POST":
+            form = ChangePasswordForm(curr_user, request.POST)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Your password has benn updated")
+                login(request, curr_user)
+                return redirect('update_user')
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, error)
+                    return redirect('update_password')
+        else:
+            form = ChangePasswordForm(curr_user)
+            return render(request, "update_password.html",
+                          {"form": form})
+    else:
+        messages.success(request, "You must be logged in to do this")
+        return redirect('login')
+
+
+def profile_user(request):
+    if request.user.is_authenticated:
+        curr_user = request.user
+        profile = Profile.objects.filter(user=curr_user)
+        return render(request, "profile.html", {"profile": profile})
+    else:
+        messages.success(request, "You must be logged in to do this")
+        return redirect('login')
+
+
+def update_info(request):
+    if request.user.is_authenticated:
+        curr_user = Profile.objects.get(user__id=request.user.id)
+
+        form = UserInfoForm(request.POST or None, instance=curr_user)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your Info has been updated")
+            return redirect("profile")
+        return render(request, "update_info.html", {"form": form})
 
     else:
         return render(request, "search.html", {})
@@ -165,9 +242,9 @@ def update_info(request):
 def category(request, cat):
     try:
         movies = Movie.objects.filter(moviecategory__category__name=cat)
-
-        return render(request, 'category.html', {"movies": movies})
-
+        print(1)
+        return render(request, 'app/category.html', {"movies": movies, "cat": cat})
+    
     except:  # noqa
         print("error")
         messages.success(request, ("That category doesn't exist"))
@@ -176,4 +253,4 @@ def category(request, cat):
 
 def category_all(request):
     categories = Category.objects.all()
-    return render(request, "category_all.html", {"categories": categories})
+    return render(request, "navbar.html", {"categories": categories})
