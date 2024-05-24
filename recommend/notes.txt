@@ -3,6 +3,12 @@ Colabrative filtering is not feasible because we dont have users
 
 -> Content based recondmendation (supervised learning)
 Their will be a 'base' user profile used for new users, then the user's profile will change as they interact with the system
+    +,Popular Movies Profile:
+        Create a profile based on the top-rated or most popular movies in your dataset.
+        This profile can be used as a starting point for new users.
+    +,Genre-Based Profile:
+        Ask new users about their preferred genres when they sign up.
+        Create a profile based on movies from these genres.
 we'll need to build an item profile(for movies it's a list of its attributes)
 
 from the item profile, we'll infer the user's profile
@@ -41,6 +47,7 @@ problems:
     +,dataset lacks casts information(have to to append cast infromation with the api,top 5 cast and Director)
     +,how are we going to store user profiles, are we gonna build it and then send it to the user to store somehow? what will even look like?
     +,we currently lack user data(will have to append userdata with movielens dataset)
+    +,how to store the matrix 
 steps to building a recondmendation model:
     +,preprocessing data
     +,hyperparameter tuning
@@ -53,7 +60,7 @@ ideas to implement if have time:
     +,give the user some choices when creating an account of movies they like or dislike, then build the user porfile from that
     +,use some of the user's given data(like age and gender) to influence recondmendation somehow
     +,using movielens we can get the rating and user that have rated movies()
-
+    +,create a new TF IDF vector everytime a new movie gets added
 training data features: 
     +,movie attributes
 output:
@@ -61,6 +68,9 @@ output:
 
 implement popularity and ratings check (check)
 create user profile(check)
+logic for user's profile creation:
+    +,new user's gets a default user profile
+    +,when they interact with the website change their user profile somehow to fit their tastes more
 add cast and crew to algorithm
 
 docker stop $(docker ps -q)
@@ -68,3 +78,14 @@ docker compose up -d --build
 docker logs dev_postgres
 
 pip install surprise
+
+need to do list:
+    +,save user profile to database
+    +,change the user profile when interacts with website
+    +,add cast and crew to algorithm
+    +,how often should we refit the vectorizer(this might not be in the scope of our project given that we're not adding any new movies)
+
+1.create and save tf-idf matrix
+2.create new user profile and save cosine matrix
+3.use cosine matrix to get recommendations
+4.change cosine matrix when user profile is changed
