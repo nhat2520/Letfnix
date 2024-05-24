@@ -3,6 +3,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 PAYMENT_METHOD_CHOICES = [
         ('PP', 'PayPal'),
@@ -33,6 +35,26 @@ CATEGORY_CHOICES = [
 
 
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20, blank=True)
+    avatar = models.ImageField(default="default.jpg",
+                               upload_to="media/uploads")
+    date_of_birth = models.DateField(blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
+
+
+post_save.connect(create_profile, sender=User)
+
+
 class Customer(models.Model):
     customer_id = models.UUIDField(primary_key=True,
                                    default=uuid.uuid4(),
@@ -56,9 +78,9 @@ class Payment(models.Model):
     payment_method = models.CharField(choices=PAYMENT_METHOD_CHOICES)
     customer = models.ForeignKey(Customer,
                                  on_delete=models.CASCADE)
+
     def __str__(self):
         return self.payment_id
-
 
 
 class Favorite_list(models.Model):
@@ -66,16 +88,18 @@ class Favorite_list(models.Model):
                                         default=uuid.uuid4(),
                                         editable=False,
                                         unique=True)
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)    
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.favorite_list_id
 
 
-
 class Category(models.Model):
-    category_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=50, choices=CATEGORY_CHOICES, unique=True)
+    category_id = models.UUIDField(primary_key=True,
+                                   default=uuid.uuid4,
+                                   editable=False)
+    name = models.CharField(max_length=50, choices=CATEGORY_CHOICES,
+                            unique=True)
 
     def __str__(self):
         return self.name
