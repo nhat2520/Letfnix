@@ -1,0 +1,80 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div>
+    <div class="m-[0_52px_8px_52px] inline-block self-start break-words font-['Poppins'] font-semibold text-[32px] leading-[1.125] text-[#FFFFFF]"> 
+        Explore
+    </div>
+    <div class="m-[0_52px_24px_52px] inline-block self-start break-words font-['Poppins'] font-normal text-[22px] leading-[1.125] text-[#868686]">
+        What are you gonna watch today ?
+    </div>
+    <div class="cursor-pointer rounded-[12px] lazyload-bg bg-[50%_50%] bg-cover bg-no-repeat relative m-[0_52px_42px_52px] flex flex-col p-[200px_0_39px_47px] w-[fit-content] box-sizing-border clickable-div" data-bg="{{ random_movie.backdrop_path }}" onclick="location.href='{% url 'movie' random_movie.movie_id %}'">
+        <div class="rounded-[12px] bg-[linear-gradient(269.96deg,rgba(29,29,29,0)_0%,rgba(29,29,29,0.8)_99.5%)] absolute left-[0px] top-[0px] right-[0px] bottom-[0px] h-[100%]"></div>
+        <a href="{% url 'movie' random_movie.movie_id %}" class="relative m-[0_0_16px_0] inline-block self-start break-words font-['Poppins'] font-semibold text-[36px] leading-[1.778] text-[var(--primary-white,#FFFFFF)]">
+            {{ random_movie.name }}
+        </a>
+        <span class="relative self-start break-words font-['Poppins'] font-normal text-[16px] leading-[1.688] text-[var(--primary-white,#FFFFFF)]">
+            {{ random_movie.description }}
+        </span>
+    </div>
+</div>
+
+<!-- TODO: New Release -->
+<div class="mx-auto rounded-[12px] flex flex-col box-sizing-border">
+    <div class="m-[0_52px_30px_0px] inline-block self-start break-words font-['Poppins'] font-semibold text-[32px] leading-[1.125] text-[#FFFFFF]"> 
+        Top Rating
+    </div>
+    <div class="grid grid-cols-[165px_165px_165px_165px_165px_165px] gap-5 text-white font-['Poppins'] text-center">
+        {% for movie in recent_movies %}
+            <a href="{% url 'movie' random_movie.movie_id %}">
+                <img src="{{movie.poster_path}}" alt="top_rating_film" class="rounded-lg">
+                <div class="truncate">{{movie.name}}</div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- TODO: New Release -->
+<div class="mx-auto rounded-[12px] flex flex-col box-sizing-border mt-5">
+    <div class="m-[0_52px_30px_0px] inline-block self-start break-words font-['Poppins'] font-semibold text-[32px] leading-[1.125] text-[#FFFFFF]"> 
+        Top Rating
+    </div>
+    <div class="grid grid-cols-[165px_165px_165px_165px_165px_165px] gap-5 text-white font-['Poppins'] text-center">
+        {% for movie in recent_movies %}
+            <a href="{% url 'movie' random_movie.movie_id %}">
+                <img src="{{movie.poster_path}}" alt="top_rating_film" class="rounded-lg">
+                <div class="truncate">{{movie.name}}</div>
+            </a>
+        {% endfor %}
+    </div>
+  </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let lazyBackgrounds = [].slice.call(document.querySelectorAll(".lazyload-bg"));
+        if ("IntersectionObserver" in window) {
+            let lazyBackgroundObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        let lazyBackground = entry.target;
+                        lazyBackground.style.backgroundImage = 'url(' + lazyBackground.dataset.bg + ')';
+                        lazyBackground.classList.remove("lazyload-bg");
+                        lazyBackgroundObserver.unobserve(lazyBackground);
+                    }
+                });
+            });
+
+            lazyBackgrounds.forEach(function(lazyBackground) {
+                lazyBackgroundObserver.observe(lazyBackground);
+            });
+        } else {
+            lazyBackgrounds.forEach(function(lazyBackground) {
+                lazyBackground.style.backgroundImage = 'url(' + lazyBackground.dataset.bg + ')';
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+
+        

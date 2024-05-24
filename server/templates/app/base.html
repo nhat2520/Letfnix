@@ -1,0 +1,68 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Letfnix</title>
+        <script src="{% static 'js/script.js' %}"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+        <!-- Favicon-->
+        {% tailwind_css %}
+        <style>
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+            
+            .dropdown-content a {
+                color: red;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+            
+            .dropdown-content a:hover {
+                background-color: #f1f1f1;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            
+            .dropdown:hover .dropbtn {
+                background-color: rgb(251, 81, 81);
+            }
+            
+            .dropbtn {
+                background-color: red;
+                color: white;
+                padding: 8.5px 11px;
+                font-size: 15px;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body class="bg-[#192026] flex flex-col p-[24px_83px_10px_83px] w-screen box-sizing-border font-['Poppins']">
+        {% include 'app/navbar.html' %}
+
+        
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>
