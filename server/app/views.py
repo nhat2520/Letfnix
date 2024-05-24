@@ -26,19 +26,26 @@ def helloworld(request):
 
 
 def home(request):
-    categories = Category.objects.all()
-    movies = Movie.objects.all()
-    random_movie = random.choice(movies)
-    print(random_movie)
-    recent_movies = Movie.objects.order_by('vote_average')[:6]
-    print(recent_movies)
-    return render(request, 'app/home.html', {"random_movie": random_movie, "recent_movies": recent_movies, "categories": categories})
+    if request.user.is_authenticated:
+        categories = Category.objects.all()
+        movies = Movie.objects.all()
+        random_movie = random.choice(movies)
+        print(random_movie)
+        recent_movies = Movie.objects.order_by('vote_average')[:6]
+        print(recent_movies)
+        return render(request, 'app/home.html',
+                      {"random_movie": random_movie,
+                       "recent_movies": recent_movies,
+                       "categories": categories})
+    else:
+        return redirect('login')
 
 
 def movie(request, pk):
     movie = Movie.objects.get(movie_id=pk)
     recent_movies = Movie.objects.order_by('vote_average')[:6]
-    return render(request, "app/movie.html", {"movie": movie, "recent_movies":recent_movies})
+    return render(request, "app/movie.html", {"movie": movie,
+                                              "recent_movies": recent_movies})
 
 
 def login_view(request):
@@ -92,32 +99,15 @@ def search_by_name(request):
 
         if not searched:
             print()
-            messages.success(request, 
+            messages.success(request,
                              "Movie doesn't exist")
             return render(request, "app/search.html", {})
         else:
-            return render(request, "app/search.html", {"movies": movies, "searched": searched})
+            return render(request, "app/search.html", {"movies": movies,
+                                                       "searched": searched})
 
-    else: 
-        return render(request, "app/search.html", {})
-
-
-def update_user(request):
-    if request.user.is_authenticated:
-        curr_user = User.objects.get(id=request.user.id)
-        user_form = UpdateUserForm(request.POST or None,
-                                   instance=curr_user)
-
-        if user_form.is_valid():
-            user_form.save()
-
-            login(request, curr_user)
-            messages.success(request, "User has been updated")
-            return redirect("home")
-        return render(request, "update_user.html", {"user_form": user_form})
     else:
-        messages.success(request, "You don't have permission to do this")
-        return redirect("login")
+        return render(request, "app/search.html", {})
 
 
 def update_password(request):
@@ -188,63 +178,13 @@ def update_user(request):
         return redirect("login")
 
 
-def update_password(request):
-    if request.user.is_authenticated:
-        curr_user = request.user
-        if request.method == "POST":
-            form = ChangePasswordForm(curr_user, request.POST)
-
-            if form.is_valid():
-                form.save()
-                messages.success(request, "Your password has benn updated")
-                login(request, curr_user)
-                return redirect('update_user')
-            else:
-                for error in list(form.errors.values()):
-                    messages.error(request, error)
-                    return redirect('update_password')
-        else:
-            form = ChangePasswordForm(curr_user)
-            return render(request, "update_password.html",
-                          {"form": form})
-    else:
-        messages.success(request, "You must be logged in to do this")
-        return redirect('login')
-
-
-def profile_user(request):
-    if request.user.is_authenticated:
-        curr_user = request.user
-        profile = Profile.objects.filter(user=curr_user)
-        return render(request, "profile.html", {"profile": profile})
-    else:
-        messages.success(request, "You must be logged in to do this")
-        return redirect('login')
-
-
-def update_info(request):
-    if request.user.is_authenticated:
-        curr_user = Profile.objects.get(user__id=request.user.id)
-
-        form = UserInfoForm(request.POST or None, instance=curr_user)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Your Info has been updated")
-            return redirect("profile")
-        return render(request, "update_info.html", {"form": form})
-
-    else:
-        messages.success(request, "You must be logged in to do this")
-        return redirect('login')
-
-
 def category(request, cat):
     try:
         movies = Movie.objects.filter(moviecategory__category__name=cat)
         print(1)
-        return render(request, 'app/category.html', {"movies": movies, "cat": cat})
-    
+        return render(request, 'app/category.html', {"movies": movies,
+                                                     "cat": cat})
+
     except:  # noqa
         print("error")
         messages.success(request, ("That category doesn't exist"))
