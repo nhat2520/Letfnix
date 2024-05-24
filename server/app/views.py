@@ -4,7 +4,13 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.models import User
 
-from .models import Movie, Profile
+from .models import (  # noqa
+    Movie,
+    Profile,
+    Category,
+    MovieCategory,
+    Movie
+)
 from .forms import (
     RegisterForm,
     UpdateUserForm,
@@ -154,3 +160,20 @@ def update_info(request):
     else:
         messages.success(request, "You must be logged in to do this")
         return redirect('login')
+
+
+def category(request, cat):
+    try:
+        movies = Movie.objects.filter(moviecategory__category__name=cat)
+
+        return render(request, 'category.html', {"movies": movies})
+
+    except:  # noqa
+        print("error")
+        messages.success(request, ("That category doesn't exist"))
+        return redirect('home')
+
+
+def category_all(request):
+    categories = Category.objects.all()
+    return render(request, "category_all.html", {"categories": categories})
