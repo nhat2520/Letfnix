@@ -3,8 +3,8 @@
 Đây là 1 trang web thương mại điện tử cho phép mua các phim có phí kèm hệ thống gợi ý phim cho người dùng
 Report: 
 - [Document](https://docs.google.com/document/d/1URkyuv_C2SSsYtNu5gWc6Z3dcwwfmbhed4w3-lTxEzs/edit?usp=sharing)
-
-
+- [Figma]([https://docs.google.com/document/d/1URkyuv_C2SSsYtNu5gWc6Z3dcwwfmbhed4w3-lTxEzs/edit?usp=sharing](https://www.figma.com/design/ajJzLWTrrJpSHcxCSx9JF2/Anonime---Movie-Streaming-Web-UI-Kit-(Community)?node-id=1067-217&t=gdPaJTWiPONVtdD9-0))
+- 
 - [Video]()
 # Member
 | Mã sinh viên  | Họ và tên |
