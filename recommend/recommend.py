@@ -93,8 +93,9 @@ def get_recommendations(user_id):
     """
 
     cosine_sim = load_npz(f"server/repo/sim_matrix_{user_id}.npz").toarray()
-    top_n_indices = cosine_sim[0].argsort()[-5:][::-1]  # Top 5 recommendations
-    return top_n_indices
+    top_n_indices = cosine_sim[0].argsort()[-6:-1][::-1]  # Top 5 recommendations
+    data = pd.read_csv('recommend/data.csv')
+    return data.iloc[top_n_indices]['original_title']
 
 
 # Function to update user profile and cosine similarity matrix
@@ -141,10 +142,11 @@ def update_user_and_similarity_matrix(
 
 #code should look something like this
 
-data = pd.read_csv('recommend/data.csv')
 create_and_save_tfidf_matrix_v1()
-create_and_save_user_profile(1, 'v1')
-calculate_and_save_similarity_matrix(1,'v1')
-print(data.iloc[get_recommendations(1)]['original_title'])
-update_user_and_similarity_matrix(1,'The Dark Knight Rises','buy','v1')
-print(data.iloc[get_recommendations(1)]['original_title'])
+user_id = 1
+create_and_save_user_profile(user_id, 'v1')
+calculate_and_save_similarity_matrix(user_id,'v1')
+print(get_recommendations(user_id))
+print()
+update_user_and_similarity_matrix(user_id,'The Dark Knight Rises','buy','v1')
+print(get_recommendations(user_id))
