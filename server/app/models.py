@@ -152,7 +152,7 @@ class Movie(models.Model):
     poster_path = models.URLField(blank=True)
     backdrop_path = models.URLField(blank=True)
     nation = models.CharField(max_length=50, blank=True)
-    run_time = models.IntegerField(max_length=100)
+    run_time = models.IntegerField()
     order = models.ForeignKey(Order,
                               on_delete=models.CASCADE,
                               null=True,)
