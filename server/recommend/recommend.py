@@ -26,6 +26,13 @@ def create_and_save_tfidf_matrix_v1():
         tfidf_matrix_v1.npz: NPZ file containing the TF-IDF matrix.
     """
     directory = "server/repo"  
+    tfidf_pkl_path = os.path.join(directory, "tfidf_v1.pkl")
+    tfidf_matrix_path = os.path.join(directory, "tfidf_matrix_v1.npz")
+    
+    # Check if the files already exist
+    if os.path.exists(tfidf_pkl_path) and os.path.exists(tfidf_matrix_path):
+
+        return
     os.makedirs(directory, exist_ok=True)
     data = pd.read_csv('server/recommend/data.csv')
     data['tagline'] = data['tagline'].fillna('')
