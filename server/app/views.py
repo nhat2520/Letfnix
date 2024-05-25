@@ -63,12 +63,18 @@ def movie(request, pk):
     movie = Movie.objects.get(movie_id=pk)
     genres = MovieCategory.objects.filter(movie_id=pk)
     categories = []
+    recommend_movie = get_recommendations(request.user.id, 7)
+
+    print(recommend_movie["title"])
+    rec_mov = []
+    for mv in recommend_movie["title"]:
+        rec_mov.append(Movie.objects.get(name=mv))
     for genre in genres:
         category = Category.objects.get(category_id=genre.category_id)
         categories.append(category)
     recent_movies = Movie.objects.order_by('-vote_average')[6:12]
     return render(request, "app/movie.html", {"movie": movie,
-                                              "recent_movies": recent_movies,
+                                              "recent_movies": rec_mov,
                                               "categories": categories})
 
 

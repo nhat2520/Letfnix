@@ -22,10 +22,10 @@
 <!-- TODO: New Release -->
 <div class="mx-auto rounded-[12px] flex flex-col box-sizing-border">
     <div class="m-[0_52px_30px_0px] inline-block self-start break-words font-['Poppins'] font-semibold text-[32px] leading-[1.125] text-[#FFFFFF]"> 
-        Top Rating
+        Recommmend for you
     </div>
     <div class="grid grid-cols-[165px_165px_165px_165px_165px_165px] gap-5 text-white font-['Poppins'] text-center">
-        {% for movie in recent_movies %}
+        {% for movie in rec_mov %}
             <a href="{% url 'movie' movie.movie_id %}">
                 <img src="{{movie.poster_path}}" alt="top_rating_film" class="rounded-lg">
                 <div class="truncate">{{movie.name}}</div>
@@ -41,7 +41,7 @@
     </div>
     <div class="grid grid-cols-[165px_165px_165px_165px_165px_165px] gap-5 text-white font-['Poppins'] text-center">
         {% for movie in recent_movies %}
-            <a href="{% url 'movie' random_movie.movie_id %}">
+            <a href="{% url 'movie' movie.movie_id %}">
                 <img src="{{movie.poster_path}}" alt="top_rating_film" class="rounded-lg">
                 <div class="truncate">{{movie.name}}</div>
             </a>
