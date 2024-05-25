@@ -41,6 +41,8 @@ class Profile(models.Model):
     avatar = models.ImageField(default="default.jpg",
                                upload_to="media/uploads")
     date_of_birth = models.DateField(blank=True, null=True)
+    balance = models.DecimalField(max_digits=15, decimal_places=2,
+                                  default=1000.00)
 
     def __str__(self):
         return self.user.username
@@ -150,7 +152,7 @@ class Movie(models.Model):
     poster_path = models.URLField(blank=True)
     backdrop_path = models.URLField(blank=True)
     nation = models.CharField(max_length=50, blank=True)
-    run_time = models.IntegerField(max_length=100)
+    run_time = models.IntegerField()
     order = models.ForeignKey(Order,
                               on_delete=models.CASCADE,
                               null=True,)
