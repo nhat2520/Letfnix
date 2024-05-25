@@ -30,7 +30,7 @@ def home(request):
         categories = Category.objects.all()
         movies = Movie.objects.all()
         random_movie = random.choice(movies)
-        recent_movies = Movie.objects.order_by('-vote_average')[:6]
+        recent_movies = Movie.objects.order_by('-vote_average')[6:12]
         return render(request, 'app/home.html',
                       {"random_movie": random_movie,
                        "recent_movies": recent_movies,
@@ -46,7 +46,7 @@ def movie(request, pk):
     for genre in genres:
         category = Category.objects.get(category_id=genre.category_id)
         categories.append(category)
-    recent_movies = Movie.objects.order_by('-vote_average')[:6]
+    recent_movies = Movie.objects.order_by('-vote_average')[6:12]
     return render(request, "app/movie.html", {"movie": movie,
                                               "recent_movies": recent_movies,
                                               "categories": categories})

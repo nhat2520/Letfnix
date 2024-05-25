@@ -8,7 +8,7 @@ import json
 def view_cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
     total_price = sum(item.movie.price for item in cart_items)
-    return render(request, "app/cart.html", {"cart_items": cart_items,
+    return render(request, "user/cart.html", {"cart_items": cart_items,
                                          "total_price": total_price})
 
 
