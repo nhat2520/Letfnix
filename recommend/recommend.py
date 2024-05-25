@@ -13,25 +13,28 @@ warnings.simplefilter("ignore")
 
 
 # Function to create and save the TF-IDF matrix
-def create_and_save_tfidf_matrix_v1(documents, filename):
+def create_and_save_tfidf_matrix_v1():
     """
-    Create and save a TF-IDF matrix from the given documents.
+    Create and save a TF-IDF matrix from the given data.
 
     Args:
-        documents (list of str): A list of text documents to be vectorized.
         filename (str): The filename for saving the TF-IDF model and matrix.
 
     Saves:
-        tfidf_{filename}.pkl: Pickle file containing the fitted TfidfVectorizer model.
-        tfidf_matrix_{filename}.npz: NPZ file containing the TF-IDF matrix.
+        tfidf_v1.pkl: Pickle file containing the fitted TfidfVectorizer model.
+        tfidf_matrix_v1.npz: NPZ file containing the TF-IDF matrix.
     """
+    data = pd.read_csv('data.csv')
+    data['tagline'] = data['tagline'].fillna('')
+    data['description'] = data['overview'] + data['tagline']
+    data['description'] = data['description'].fillna('')
     tf = TfidfVectorizer(
         analyzer="word", ngram_range=(1, 2), min_df=0.01, stop_words="english"
     )
-    tfidf_matrix = tf.fit_transform(documents)
-    with open(f"tfidf_{filename}.pkl", "wb") as f:
+    tfidf_matrix = tf.fit_transform(documents['description'])
+    with open("tfidf_v1.pkl", "wb") as f:
         pickle.dump(tf, f)
-    save_npz(f"tfidf_matrix_{filename}.npz", tfidf_matrix)
+    save_npz("tfidf_matrix_v1.npz", tfidf_matrix)
 
 
 # Function to create a new user profile and save it
@@ -127,6 +130,7 @@ def update_user_and_similarity_matrix(
     user_profile = user_profile.reshape(1, -1)
     updated_cosine_sim = linear_kernel(user_profile, tfidf_matrix)
     save_npz(f"sim_matrix_{user_id}.npz", csr_matrix(updated_cosine_sim))
+
 
 
 
