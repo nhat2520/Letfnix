@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="grid grid-cols-[600px_600px] gap-20">
+    <div class="">
+        <div class="text-red-600 text-3xl font-semibold mb-5">Guest Checkout</div>
+        <div class="text-2xl text-white mb-5">Items</div>
+        <ol class="list-decimal">
+            {% for movie in movies %}
+                <li class="relative  text-lg ml-5 text-white">
+                    <span>{{movie.name}}</span>
+                    <span class="absolute right-0">${{movie.price}}</span>
+                </li> 
+                <div class="w-full h-[0.5px] bg-white mb-4"></div>
+            {% endfor %}
+        </ol>
+        <div class="relative text-2xl text-red-600 font-semibold mt-5">
+            <span class="absolute left-0">
+                Total
+            </span>
+            <span class="absolute right-0">${{total_price}}</span>
+        </div>
+    </div>
+    <div class="">
+        <div class="text-red-600 text-3xl font-semibold mb-5">Payment Details</div>
+        <div class="text-white text-3xl font-semibold mb-10">Your Amount: <span class="text-red-600">${{profile.balance}}</span></div>
+        <div class="flex justify-center">
+            <form action="{% url 'process_payment' %}" method="post" class="w-full">
+                {% csrf_token %}
+                <input type="number" name="total_price" id="" value="{{total_price}}" class="hidden">
+                <button type="submit" class="px-10 py-5 text-white bg-red-600 w-full rounded-xl">Submit Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -35,7 +35,7 @@ for category_name in categories:
     else:
         print(f"Category {category.name} already exists")
 
-
+ 
 
 
 #add movie, moviecategory
@@ -59,7 +59,9 @@ for index, row in df.iterrows():
         trailer_url=row['url'],
         vote_average=row['vote_average'],
         poster_path=row['poster_path'],
-        backdrop_path=row['backdrop_path']
+        backdrop_path=row['backdrop_path'],
+        nation=row['origin_country'],
+        run_time=row['runtime']
     )
     movie.save()
 

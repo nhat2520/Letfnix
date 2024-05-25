@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'add_funds' %}">
+    {% csrf_token %}
+    <div class="space-y-6">
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.amount.label }}</label>
+            {{ form.amount }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_name.label }}</label>
+            {{ form.card_name }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_number.label }}</label>
+            {{ form.card_number }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_exp_date.label }}</label>
+            {{ form.card_exp_date }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_cvv_number.label }}</label>
+            {{ form.card_cvv_number }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_address1.label }}</label>
+            {{ form.card_address1 }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_address2.label }}</label>
+            {{ form.card_address2 }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_city.label }}</label>
+            {{ form.card_city }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_state.label }}</label>
+            {{ form.card_state }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_zipcode.label }}</label>
+            {{ form.card_zipcode }}
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-400">{{ form.card_country.label }}</label>
+            {{ form.card_country }}
+        </div>
+    </div>
+    <button type="submit" class="w-full mt-6 bg-red-500 text-white p-3 rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+        Add Funds
+    </button>
+</form>
+    
+{% endblock %}
+
+
+        

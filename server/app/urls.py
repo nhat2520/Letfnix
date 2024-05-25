@@ -13,7 +13,7 @@ urlpatterns = [
     path('profile/update_user', views.update_user, name="update_user"),
     path('profile/update_password', views.update_password,
          name="update_password"),
-    path('profile/update_info', views.update_info, name="update_info"),
+    path('profile/library', views.view_library, name="library"),
     path('category/<str:cat>', views.category, name="category"),
     path("category", views.category_all, name="category_all")
 ]

@@ -26,7 +26,7 @@
     </div>
     <div class="grid grid-cols-[165px_165px_165px_165px_165px_165px] gap-5 text-white font-['Poppins'] text-center">
         {% for movie in recent_movies %}
-            <a href="{% url 'movie' random_movie.movie_id %}">
+            <a href="{% url 'movie' movie.movie_id %}">
                 <img src="{{movie.poster_path}}" alt="top_rating_film" class="rounded-lg">
                 <div class="truncate">{{movie.name}}</div>
             </a>

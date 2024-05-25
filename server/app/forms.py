@@ -82,9 +82,8 @@ class ChangePasswordForm(SetPasswordForm):
 
 
 class UserInfoForm(forms.ModelForm):
-    phone_number = forms.CharField()
-    avatar = forms.ImageField()
-    date_of_birth = forms.DateField()
+    phone_number = forms.CharField(required=False)
+    date_of_birth = forms.DateField(required=False)
 
     class Meta:
         model = Profile

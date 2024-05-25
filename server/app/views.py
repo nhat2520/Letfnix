@@ -10,7 +10,8 @@ from .models import (  # noqa
     Profile,
     Category,
     MovieCategory,
-    Movie
+    Movie,
+    Library
 )
 from .forms import (
     RegisterForm,
@@ -44,6 +45,8 @@ def home(request):
             rec_mov.append(Movie.objects.get(name=movie))
         print(rec_mov)
         random_movie = random.choice(movies)
+
+        recent_movies = Movie.objects.order_by('-vote_average')[6:12]
         print(random_movie)
         recent_movies = Movie.objects.order_by('-vote_average')[:6]
         print(recent_movies)
@@ -58,9 +61,15 @@ def home(request):
 
 def movie(request, pk):
     movie = Movie.objects.get(movie_id=pk)
-    recent_movies = Movie.objects.order_by('-vote_average')[:6]
+    genres = MovieCategory.objects.filter(movie_id=pk)
+    categories = []
+    for genre in genres:
+        category = Category.objects.get(category_id=genre.category_id)
+        categories.append(category)
+    recent_movies = Movie.objects.order_by('-vote_average')[6:12]
     return render(request, "app/movie.html", {"movie": movie,
-                                              "recent_movies": recent_movies})
+                                              "recent_movies": recent_movies,
+                                              "categories": categories})
 
 
 def login_view(request):
@@ -94,7 +103,6 @@ def register_view(request):
             form.save()
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password1"]
-
             user = authenticate(username=username,
                                 password=password)
             login(request, user)
@@ -134,20 +142,21 @@ def update_password(request):
         curr_user = request.user
         if request.method == "POST":
             form = ChangePasswordForm(curr_user, request.POST)
-
             if form.is_valid():
+                
                 form.save()
                 messages.success(request, "Your password has benn updated")
                 login(request, curr_user)
-                return redirect('update_user')
+                return redirect('profile')
             else:
+                print(form.errors)
                 for error in list(form.errors.values()):
                     messages.error(request, error)
                     return redirect('update_password')
         else:
-            form = ChangePasswordForm(curr_user)
-            return render(request, "update_password.html",
-                          {"form": form})
+            
+            return render(request, "user/update_password.html",
+                          {"user": curr_user})
     else:
         messages.success(request, "You must be logged in to do this")
         return redirect('login')
@@ -156,12 +165,23 @@ def update_password(request):
 def profile_user(request):
     if request.user.is_authenticated:
         curr_user = request.user
-        profile = Profile.objects.filter(user=curr_user)
-        return render(request, "profile.html", {"profile": profile})
+        profile = Profile.objects.get(user__id=request.user.id)
+        return render(request, "user/profile.html", {"profile": profile, "user": curr_user})
     else:
         messages.success(request, "You must be logged in to do this")
         return redirect('login')
 
+def view_library(request):
+    if request.user.is_authenticated:
+        curr_user = request.user
+        libraries = Library.objects.filter(user=curr_user)
+        movies = []
+        for library in libraries:
+            movies.append(Movie.objects.get(movie_id=library.movie_id))
+        return render(request, "user/my_movie.html", {"user": curr_user, "movies":movies})
+    else:
+        messages.success(request, "You must be logged in to do this")
+        return redirect('login')
 
 def update_info(request):
     if request.user.is_authenticated:
@@ -180,21 +200,28 @@ def update_info(request):
 
 
 def update_user(request):
-    if request.user.is_authenticated:
-        curr_user = User.objects.get(id=request.user.id)
-        user_form = UpdateUserForm(request.POST or None,
-                                   instance=curr_user)
 
-        if user_form.is_valid():
-            user_form.save()
+        user_form = UpdateUserForm()
+        profile_form = UserInfoForm()
+        if request.method == "POST":
+            curr_user = User.objects.get(id=request.user.id)
+            curr_profile = Profile.objects.get(user__id=request.user.id)
 
-            login(request, curr_user)
-            messages.success(request, "User has been updated")
-            return redirect("home")
-        return render(request, "update_user.html", {"user_form": user_form})
-    else:
-        messages.success(request, "You don't have permission to do this")
-        return redirect("login")
+            user_form = UpdateUserForm(request.POST or None,
+                                       instance=curr_user)
+            profile_form = UserInfoForm(request.POST or None,
+                                        instance=curr_profile)
+            
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                profile_form.save()
+                return redirect('profile')
+            print(user_form.errors)
+            print(profile_form.errors)  
+            return redirect('profile')
+        else:
+            return render(request, "user/update_user.html", {"user_form": user_form,
+                                                        "profile_form": profile_form})
 
 
 def category(request, cat):
