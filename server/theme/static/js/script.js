@@ -24,6 +24,7 @@ window.onload = function() {
     function submitAddToCartForm() {
         document.getElementById('add-to-cart-form').submit();
     }
+    
 }
 // Prevent the default behavior of the anchor tag inside the div
 document.querySelectorAll('.clickable-div a').forEach(anchor => {

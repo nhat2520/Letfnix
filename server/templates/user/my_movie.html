@@ -2,8 +2,66 @@
 {% block content %}
 {% load static %}
 
+<div class="grid grid-cols-[300px_2px_850px] gap-10">
+    <div class="flex justify-center items-center">
+        <div class="w-full">
+            <div class=" h-20  flex justify-center items-center cursor-pointer">
+                <div class="text-white">
+                    <img src="{% static 'svg/user_white.svg' %}" alt="" class="float-left h-7">
+                    <span class="ml-3 mt-0.5 float-left text-xl font-semibold">Profile</span>
+                </div>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'library' %}">
+                    <div class="text-red-600">
+                        <img src="{% static 'svg/movie_red.svg' %}" alt="" class="float-left h-5 mt-2">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Movie</span>
+                    </div>
+                </a>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'update_password' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/lock_white.svg' %}" alt="" class="float-left h-7 ml-9 mt-1">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Password</span>
+                    </div>
+                </a>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'logout' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/logout.svg' %}" alt="" class="float-left h-6 ml-5 mt-1.5">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Log out</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="h-[500px] w-[0.5px] bg-gray-400">
+    </div>
+    <div class="">
+        <div class="flex justify-center mt-[-20px]">
+            <img src="{% static 'svg/user_white.svg' %}" alt="" class="float-left h-20 mb-2">
+        </div>
+        <div class="text-xl text-center  text-white font-semibold">Your name</div>
+        {% for movie in movies %}
+        <a href="{% url 'movie' movie.movie_id %}">
+            <div class="w-[90%] mt-4 h-[225px] clear-both cursor-pointer">
+                <img class="rounded-xl float-left mr-2" width="150px" src={{movie.poster_path}} alt="">
+                <div class="float-left pl-3">
+                    <div class="text-2xl font-semibold text-white mb-3">
+                        {{movie.name}}
+                    </div>
+                    <p class="mt-2 text-sm text-gray-400 w-[500px] max-h-24 break-words">
+                        {{movie.description }}
+                    </p>
+                </div>
+                
+            </div>
+        </a>
+    {% endfor %}
 
-
-
+    </div>
+</div>
 
 {% endblock %}

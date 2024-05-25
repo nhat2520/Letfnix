@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="flex items-center justify-center">
+    <div class="text-center">
+        <h1 class="text-red-500 text-3xl font-bold mb-4">Payment Success!</h1>
+        <p class="text-white text-xl mb-8"><span class="text-red-500 font-bold">Movies</span> are now at Your Profile!</p>
+        <div class="space-y-4">
+            <a href="{% url 'profile' %}" class="block w-48 mx-auto py-3 bg-red-500 text-white text-lg font-bold rounded-lg hover:bg-red-600">My profile</a>
+            <a href="{% url 'home' %}" class="block w-48 mx-auto py-3 border-2 border-white text-white text-lg font-bold rounded-lg hover:bg-gray-800">Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+        

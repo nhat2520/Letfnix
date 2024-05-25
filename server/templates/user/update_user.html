@@ -1,0 +1,107 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="grid grid-cols-[300px_2px_850px] gap-10">
+    <div class="flex justify-center items-center">
+        <div class="w-full">
+            <div class=" h-20  flex justify-center items-center cursor-pointer">
+                <div class="text-red-600">
+                    <img src="{% static 'svg/user_red.svg' %}" alt="" class="float-left h-7">
+                    <span class="ml-3 mt-0.5 float-left text-xl font-semibold">Profile</span>
+                </div>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'library' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/movie_white.svg' %}" alt="" class="float-left h-5 mt-2">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Movie</span>
+                    </div>
+                </a>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'update_password' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/lock_white.svg' %}" alt="" class="float-left h-7 ml-9 mt-1">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Password</span>
+                    </div>
+                </a>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'logout' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/logout.svg' %}" alt="" class="float-left h-6 ml-5 mt-1.5">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Log out</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="h-[500px] w-[0.5px] bg-gray-400">
+    </div>
+    <div class="">
+        <div class="flex justify-center mt-[-20px]">
+            <img src="{% static 'svg/user_white.svg' %}" alt="" class="float-left h-20 mb-2">
+        </div>
+        <div class="text-xl text-center  text-white font-semibold">Your name</div>
+        <div class="relative flex justify-center text-white font-semibold">
+            <div class="w-48 flex justify-center relative">
+                <span class="text-red-600">Current Amount: </span> <span>${{profile.balance}}</span>
+                <div class="absolute right-[-55px] mt-[-1px] bg-red-600 px-2 rounded-xl py-1 text-xs">Add + </div>
+            </div>
+        </div>
+    
+        <div class="flex justify-center items-center w-full">
+            <div class="p-8 rounded-lg w-[700px]">
+                <form action="{% url 'update_user' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username" class="block text-white">Username</label>
+                        {{ user_form.username }}
+                        <!-- <input type="username" id="username" name="username" placeholder="{{user.username}}" class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> -->
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="form-group">
+                            <label for="first_name" class="block text-white">First Name</label>
+                            <!-- <input type="text" id="first_name" name="first_name" placeholder="{{user.first_name}}" class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> 
+                            -->
+                            {{ user_form.first_name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="block text-white">Last Name</label>
+                            {{ user_form.last_name }}
+                            <!-- <input type="text" id="last_name" name="last_name" placeholder="{{user.last_name}}" class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> -->
+                        </div>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="email" class="block text-white">Email</label>
+                        {{ user_form.email }}
+                        <!-- <input type="email" id="email" name="email" placeholder="{{user.email}}" class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> -->
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <div class="form-group">
+                            <label for="phone_number" class="block text-white">Phone number</label>
+                            {{profile_form.phone_number}}
+                            <!-- <input type="text" id="phone_number" name="phone_number" placeholder='{{profile.phone_number}}' class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="dob" class="block text-white">Date of birth</label>
+                            {{profile_form.date_of_birth}}
+                            <!-- <input type="date" id="dob" name="date_of_birth" placeholder="{{profile.date_of_birth}}" class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> -->
+                        </div>
+                    </div>
+                    <button name="Cancel" type="submit" class="px-4 py-2 bg-white text-red-600 border-2 border-red-600 font-semibold rounded hover:bg-white mt-5 mr-5 text-red-600">
+                        Cancel
+                    </button>
+                    <button name="Save" type="submit" class="px-4 py-2 bg-red-600 text-white border-2 border-red-600 font-semibold rounded hover:bg-red-700 mt-5">
+                        Save
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

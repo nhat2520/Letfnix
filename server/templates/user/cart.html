@@ -30,7 +30,11 @@
     <div class="grid grid-cols-[190px_1fr_190px] mt-10 border-4 border-red-600 w-[90%] py-5 text-white text-2xl pl-5 rounded-xl">
         <div>Total</div>
         <div class="flex justify-center text-red-500 font-semibold">${{total_price}}</div>
-        <div class="bg-red-500 my-[-20px] flex justify-center items-center">Purchase</div>
+        <div class="bg-red-500 my-[-20px] flex justify-center items-center">
+            <a href="{% url 'bill_info' %}">
+                Purchase
+            </a>
+        </div>
     </div>
 </div>
 
