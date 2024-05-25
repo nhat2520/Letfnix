@@ -139,4 +139,12 @@ def update_user_and_similarity_matrix(
 
 
 
+#code should look something like this
 
+data = pd.read_csv('recommend/data.csv')
+create_and_save_tfidf_matrix_v1()
+create_and_save_user_profile(1, 'v1')
+calculate_and_save_similarity_matrix(1,'v1')
+print(data.iloc[get_recommendations(1)]['original_title'])
+update_user_and_similarity_matrix(1,'The Dark Knight Rises','buy','v1')
+print(data.iloc[get_recommendations(1)]['original_title'])
