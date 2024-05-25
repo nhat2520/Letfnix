@@ -86,6 +86,6 @@ need to do list:
     +,how often should we refit the vectorizer(this might not be in the scope of our project given that we're not adding any new movies)
 
 1.create and save tf-idf matrix
-2.create new user profile and save cosine matrix
+2.create new user profile and save cosine matrix(using tf-idf matrix)
 3.use cosine matrix to get recommendations
 4.change cosine matrix when user profile is changed

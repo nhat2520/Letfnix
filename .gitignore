@@ -2,3 +2,5 @@
 .env
 .venv
 data
+data.csv
+thing.ipynb
