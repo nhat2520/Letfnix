@@ -27,7 +27,7 @@ def create_and_save_tfidf_matrix_v1():
     """
     directory = "server/repo"  
     os.makedirs(directory, exist_ok=True)
-    data = pd.read_csv('recommend/data.csv')
+    data = pd.read_csv('server/recommend/data.csv')
     data['tagline'] = data['tagline'].fillna('')
     data['description'] = data['overview'] + data['tagline']
     data['description'] = data['description'].fillna('')
@@ -94,7 +94,7 @@ def get_recommendations(user_id):
 
     cosine_sim = load_npz(f"server/repo/sim_matrix_{user_id}.npz").toarray()
     top_n_indices = cosine_sim[0].argsort()[-6:-1][::-1]  # Top 5 recommendations
-    data = pd.read_csv('recommend/data.csv')
+    data = pd.read_csv('server/recommend/data.csv')
     return data.iloc[top_n_indices]['original_title']
 
 
@@ -124,7 +124,7 @@ def update_user_and_similarity_matrix(
     with open(f"server/repo/user_profile_{user_id}.pkl", "rb") as f:
         user_profile = pickle.load(f)
     
-    data = pd.read_csv('recommend/data.csv')
+    data = pd.read_csv('server/recommend/data.csv')
     movie_idx =  data.index[data['original_title'] == movie_name].tolist()
 
     tfidf_matrix = load_npz(f"server/repo/tfidf_matrix_{tfidf_matrix_filename}.npz")
