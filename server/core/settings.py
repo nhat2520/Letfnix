@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'app',
     'tailwind',
     'theme',
-    'cart'
+    'cart',
+    'payment'
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TAILWIND_APP_NAME = 'theme'
 
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+# NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+
+PAYMENT_HOST = 'localhost:8000'
+
+PAYMENT_USES_SSL = False
