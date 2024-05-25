@@ -1,0 +1,91 @@
+There are two ways we can go about building a recondmendation system, colabrative filtering and content based recondmendation 
+Colabrative filtering is not feasible because we dont have users
+
+-> Content based recondmendation (supervised learning)
+Their will be a 'base' user profile used for new users, then the user's profile will change as they interact with the system
+    +,Popular Movies Profile:
+        Create a profile based on the top-rated or most popular movies in your dataset.
+        This profile can be used as a starting point for new users.
+    +,Genre-Based Profile:
+        Ask new users about their preferred genres when they sign up.
+        Create a profile based on movies from these genres.
+we'll need to build an item profile(for movies it's a list of its attributes)
+
+from the item profile, we'll infer the user's profile
+    +,a simple way of doing this is just to take an weighted average of all the item profiles which the user has interacted with
+    +there are explicit and implicit ways in which a user can change their user profile
+    +,a user's data(like age and gender) can also affect their user profile
+
+we can think of item features as vectors, with boolean values(for example 1 if an actor appears and 0 if an actor doesn't appear)
+
+we'll have to figure out how to handle text features(TF - IDF and count vectorizer can be considered for non text features)
+
+we'll also have to justify the features we do use to build the item and subsequently the user profile
+
+as the user interacts with the app their user profile will change
+    +,the algorithm will change diffferently based on what the user does(viewing a movie changes it a bit, buying changes it a lot)
+
+making predictions based on the user profile
+    +,do math to calculate the difference betwwen the user profile and item profile(both of which are just vectors in high dimensional space)
+
+Pros and cons of content based recondmendation:
+Pros:
+    +,no need for other user's data
+    +,works well for users with niche tastes
+    +,able to recondmend new and unpopular items(the rating of the item wouldnt matter as much as the features themselves)
+    +,clear cut explaination available for model recondmendation behavouir
+Cons:
+    +,Finding the appropriate feature for items is hard and requires serious consideration
+    +,prone to overspecialization, the user doesn't get the see items outside their user profile
+    +,have to figure out how to build a user profile for new users
+
+limitation of our project:
+    +, lack of user data
+    +, have to build a base user profile(which is probably a user porfile that has no preference, represents a new unknown user)
+
+problems:
+    +,dataset lacks casts information(have to to append cast infromation with the api,top 5 cast and Director)
+    +,how are we going to store user profiles, are we gonna build it and then send it to the user to store somehow? what will even look like?
+    +,we currently lack user data(will have to append userdata with movielens dataset)
+    +,how to store the matrix 
+steps to building a recondmendation model:
+    +,preprocessing data
+    +,hyperparameter tuning
+    +,model training and prediction
+    +,Post preprocessing
+    +,evaluation
+
+ideas to implement if have time:
+    +,dont recondmend to users what they have already seen
+    +,give the user some choices when creating an account of movies they like or dislike, then build the user porfile from that
+    +,use some of the user's given data(like age and gender) to influence recondmendation somehow
+    +,using movielens we can get the rating and user that have rated movies()
+    +,create a new TF IDF vector everytime a new movie gets added
+training data features: 
+    +,movie attributes
+output:
+    +,movies with similar item profiles
+
+implement popularity and ratings check (check)
+create user profile(check)
+logic for user's profile creation:
+    +,new user's gets a default user profile
+    +,when they interact with the website change their user profile somehow to fit their tastes more
+add cast and crew to algorithm
+
+docker stop $(docker ps -q)
+docker compose up -d --build
+docker logs dev_postgres
+
+pip install surprise
+
+need to do list:
+    +,save user profile to database
+    +,change the user profile when interacts with website
+    +,add cast and crew to algorithm
+    +,how often should we refit the vectorizer(this might not be in the scope of our project given that we're not adding any new movies)
+
+1.create and save tf-idf matrix
+2.create new user profile and save cosine matrix(using tf-idf matrix)
+3.use cosine matrix to get recommendations
+4.change cosine matrix when user profile is changed

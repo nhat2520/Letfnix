@@ -19,6 +19,12 @@ from .forms import (
     ChangePasswordForm,
     UserInfoForm
 )
+from recommend import (
+    create_and_save_tfidf_matrix_v1,
+    create_and_save_user_profile,
+    calculate_and_save_similarity_matrix,
+    get_recommendations,
+)
 
 
 # Create your views here.
@@ -30,11 +36,24 @@ def home(request):
     if request.user.is_authenticated:
         categories = Category.objects.all()
         movies = Movie.objects.all()
+        user = request.user
+        recommend_movie = get_recommendations(user.id, 7)
+
+        print(recommend_movie["title"])
+        rec_mov = []
+        for movie in recommend_movie["title"]:
+            rec_mov.append(Movie.objects.get(name=movie))
+        print(rec_mov)
         random_movie = random.choice(movies)
+
         recent_movies = Movie.objects.order_by('-vote_average')[6:12]
+        print(random_movie)
+        recent_movies = Movie.objects.order_by('-vote_average')[:6]
+        print(recent_movies)
         return render(request, 'app/home.html',
                       {"random_movie": random_movie,
                        "recent_movies": recent_movies,
+                       "rec_mov": rec_mov,
                        "categories": categories})
     else:
         return redirect('login')
@@ -54,6 +73,7 @@ def movie(request, pk):
 
 
 def login_view(request):
+    create_and_save_tfidf_matrix_v1()
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -87,6 +107,9 @@ def register_view(request):
                                 password=password)
             login(request, user)
             messages.success(request, "You have registered successfully")
+
+            create_and_save_user_profile(user.id, "v1")
+            calculate_and_save_similarity_matrix(user.id, "v1")
             return redirect('home')
         else:
             messages.success(request, "There have been a problem")
