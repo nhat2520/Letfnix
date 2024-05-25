@@ -14,6 +14,7 @@ Các bước để sử dụng mô hình gợi ý
 
 Sử dụng hàm create_and_save_tfidf_matrix_v1(documents, filename) để tạo và lưu ma trận TF-IDF(với cái tf-idf vectorizer).
 
+![ad](https://github.com/nhat2520/Letfnix/assets/161301206/05b2be77-5326-415e-91d5-a54f5f7d69de)
 
 ### Tạo và Lưu Hồ Sơ Người Dùng (chạy mỗi khi có người dùng mới)
 
