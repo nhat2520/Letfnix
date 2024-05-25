@@ -23,10 +23,12 @@ Sử dụng hàm calculate_and_save_similarity_matrix(user_id, tfidf_matrix_file
 
 ![ad](https://github.com/nhat2520/Letfnix/assets/161301206/fde61eba-e55a-4e51-abf6-036d7b48542e)
 
-### tạo recommendation Cho Người Dùng (chạy khi cần recommendation)
+### Tạo Recommendation Cho Người Dùng (chạy khi cần recommendation)
 
-Sử dụng hàm get_recommendations(user_id) để nhận 5 gợi ý hàng đầu cho một người dùng dựa trên ma trận tương đồng cosine.
-Cung cấp ID người dùng (user_id) như một đối số.
+Sử dụng hàm get_recommendations(user_id, n_rec) để nhận n_rec số gợi ý hàng đầu cho một người dùng dựa trên ma trận tương đồng cosine.
+
+![ad](https://github.com/nhat2520/Letfnix/assets/161301206/d145d5cb-c399-41e8-bcdb-16a2eeefc818)
+
 
 ### Cập Nhật Hồ Sơ Người Dùng và Ma Trận Tương Đồng (chạy khi người dùng tương tác với trang web)
 
