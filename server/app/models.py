@@ -41,6 +41,8 @@ class Profile(models.Model):
     avatar = models.ImageField(default="default.jpg",
                                upload_to="media/uploads")
     date_of_birth = models.DateField(blank=True, null=True)
+    balance = models.DecimalField(max_digits=15, decimal_places=2,
+                                  default=1000.00)
 
     def __str__(self):
         return self.user.username
