@@ -16,15 +16,12 @@ Sử dụng hàm create_and_save_tfidf_matrix_v1(documents, filename) để tạ
 
 ![ad](https://github.com/nhat2520/Letfnix/assets/161301206/05b2be77-5326-415e-91d5-a54f5f7d69de)
 
-### Tạo và Lưu Hồ Sơ Người Dùng (chạy mỗi khi có người dùng mới)
+### Tạo và Lưu Hồ Sơ Người Dùng và Ma Trận Tương Đồng (chạy mỗi khi có người dùng mới)
 
 Sử dụng hàm create_and_save_user_profile(user_id, tfidf_matrix_filename) để tạo và lưu hồ sơ người dùng dựa trên ma trận TF-IDF.
-Cung cấp một ID người dùng (user_id) và tên tệp của ma trận TF-IDF đã lưu (tfidf_matrix_filename).
-
-### Tính Toán và Lưu Ma Trận Tương Đồng cho người dùng (chạy mội khi có người dùng mới)
-
 Sử dụng hàm calculate_and_save_similarity_matrix(user_id, tfidf_matrix_filename) để tính toán và lưu ma trận tương đồng cosine cho một hồ sơ người dùng.
-Chuyển ID người dùng (user_id) và tên tệp của ma trận TF-IDF đã lưu (tfidf_matrix_filename).
+
+![ad](https://github.com/nhat2520/Letfnix/assets/161301206/fde61eba-e55a-4e51-abf6-036d7b48542e)
 
 ### tạo recommendation Cho Người Dùng (chạy khi cần recommendation)
 
