@@ -88,19 +88,20 @@ def calculate_and_save_similarity_matrix(user_id, tfidf_matrix_filename):
 
 
 # Function to get recommendations based on a user_id
-def get_recommendations(user_id):
+def get_recommendations(user_id, length):
     """
     Get the top 5 recommendations for a user based on the cosine similarity matrix.
 
     Args:
         user_id (int): The user ID for which to get recommendations.
+        length (int): numnber of movies to return.
 
     Returns:
         list of int: The indices of the top 5 recommended items.
     """
 
     cosine_sim = load_npz(f"server/repo/sim_matrix_{user_id}.npz").toarray()
-    top_n_indices = cosine_sim[0].argsort()[-6:-1][::-1]  # Top 5 recommendations
+    top_n_indices = cosine_sim[0].argsort()[-length:-1][::-1]  # Top 5 recommendations
     data = pd.read_csv('server/recommend/data.csv')
     return data.iloc[top_n_indices]
 
