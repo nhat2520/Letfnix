@@ -31,8 +31,8 @@ def create_and_save_tfidf_matrix_v1():
     
     # Check if the files already exist
     if os.path.exists(tfidf_pkl_path) and os.path.exists(tfidf_matrix_path):
-
         return
+
     os.makedirs(directory, exist_ok=True)
     data = pd.read_csv('server/recommend/data.csv')
     data['tagline'] = data['tagline'].fillna('')
@@ -102,7 +102,7 @@ def get_recommendations(user_id):
     cosine_sim = load_npz(f"server/repo/sim_matrix_{user_id}.npz").toarray()
     top_n_indices = cosine_sim[0].argsort()[-6:-1][::-1]  # Top 5 recommendations
     data = pd.read_csv('server/recommend/data.csv')
-    return data.iloc[top_n_indices]['original_title']
+    return data.iloc[top_n_indices]
 
 
 # Function to update user profile and cosine similarity matrix
