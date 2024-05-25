@@ -4,3 +4,5 @@
 data
 junk
 thing.ipynb
+*.npz
+*.pkl
