@@ -51,7 +51,7 @@ def add_funds(request):
         return redirect('login')
 
 
-def process(request, total_price):
+def processing(request, total_price):
     curr_user = request.user
     profile = Profile.objects.filter(user=curr_user)
     if profile.balance >= total_price:
