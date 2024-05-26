@@ -7,7 +7,7 @@ import uuid
 # Thêm category
 categories = [
     'Action',
-    'Adventure', 
+    'Adventure',
     'Animation',
     'Comedy',
     'Crime',
@@ -19,7 +19,7 @@ categories = [
     'Horror',
     'Music',
     'Mystery',
-    'Romance', 
+    'Romance',
     'Science Fiction',
     'TV Movie',
     'Thriller',
@@ -35,10 +35,8 @@ for category_name in categories:
     else:
         print(f"Category {category.name} already exists")
 
- 
 
-
-#add movie, moviecategory
+# add movie, moviecategory
 df = pd.read_csv('data.csv')
 genre_json = []
 for i in df['genres']:
@@ -68,11 +66,8 @@ for index, row in df.iterrows():
     for genre in row['genres']:
         category = Category.objects.get(name=genre)
         moviecategory = MovieCategory(
-            movie = movie,
-            category = category
+            movie=movie,
+            category=category
         )
         moviecategory.save()
 print()
-
-
-

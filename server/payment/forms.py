@@ -1,11 +1,12 @@
 from django import forms
 
+
 class AddFundsForm(forms.Form):
     amount = forms.DecimalField(
         required=True,
         label="Amount",
         widget=forms.NumberInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Amount'
         })
     )
@@ -13,7 +14,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Card Name",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Card Name'
         })
     )
@@ -21,7 +22,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Card Number",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Card Number'
         })
     )
@@ -29,7 +30,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Card Expiration Date",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Card Expiration Date (MM/YY)'
         })
     )
@@ -37,7 +38,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="CVV",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'CVV'
         })
     )
@@ -45,7 +46,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Address Line 1",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Address Line 1'
         })
     )
@@ -53,7 +54,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Address Line 2",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Address Line 2'
         })
     )
@@ -61,7 +62,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="City",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'City'
         })
     )
@@ -69,7 +70,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="State",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'State'
         })
     )
@@ -77,7 +78,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Zip Code",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Zip Code'
         })
     )
@@ -85,7 +86,7 @@ class AddFundsForm(forms.Form):
         required=False,
         label="Country",
         widget=forms.TextInput(attrs={
-            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',
+            'class': 'block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500',  # noqa
             'placeholder': 'Country'
         })
     )

@@ -1,5 +1,3 @@
-"""Python file to create/save user and item profiles, get recommendations for user"""
-
 import pickle
 import warnings
 import os
@@ -57,7 +55,8 @@ def create_and_save_user_profile(user_id, tfidf_matrix_filename):
         tfidf_matrix_filename (str): The filename of the saved TF-IDF matrix.
 
     Saves:
-        user_profile_{user_id}.pkl: Pickle file containing the user profile vector.
+        user_profile_{user_id}.pkl: Pickle file containing the user profile
+        vector.
     """
 
     tfidf_matrix = load_npz(f"repo/tfidf_matrix_{tfidf_matrix_filename}.npz")
@@ -72,11 +71,13 @@ def calculate_and_save_similarity_matrix(user_id, tfidf_matrix_filename):
     Calculate and save the cosine similarity matrix for a user profile.
 
     Args:
-        user_id (int): The user ID for which to calculate the similarity matrix.
+        user_id (int): The user ID for which to calculate the similarity
+        matrix.
         tfidf_matrix_filename (str): The filename of the saved TF-IDF matrix.
 
     Saves:
-        sim_matrix_{user_id}.npz: NPZ file containing the cosine similarity matrix.
+        sim_matrix_{user_id}.npz: NPZ file containing the cosine similarity
+        matrix.
     """
 
     with open(f"repo/user_profile_{user_id}.pkl", "rb") as f:
@@ -90,7 +91,8 @@ def calculate_and_save_similarity_matrix(user_id, tfidf_matrix_filename):
 # Function to get recommendations based on a user_id
 def get_recommendations(user_id, length):
     """
-    Get the top 5 recommendations for a user based on the cosine similarity matrix.
+    Get the top 5 recommendations for a user based on the cosine similarity
+    matrix.
 
     Args:
         user_id (int): The user ID for which to get recommendations.
@@ -114,7 +116,8 @@ def update_user_and_similarity_matrix(
     Update the user profile and cosine similarity matrix based on user actions.
 
     Args:
-        user_id (int): The user ID for which to update the profile and similarity matrix.
+        user_id (int): The user ID for which to update the profile and
+        similarity matrix.
         movie_name (str): The name of the movie.
         action (str): The action performed by the user ('view' or 'buy').
         tfidf_matrix_filename (str): The filename of the saved TF-IDF matrix.
@@ -133,7 +136,7 @@ def update_user_and_similarity_matrix(
         user_profile = pickle.load(f)
 
     data = pd.read_csv('server/recommend/data.csv')
-    movie_idx =  data.index[data['original_title'] == movie_name].tolist()
+    movie_idx = data.index[data['original_title'] == movie_name].tolist()
 
     tfidf_matrix = load_npz(f"repo/tfidf_matrix_{tfidf_matrix_filename}.npz")
     movie_tfidf_vector = tfidf_matrix[movie_idx].toarray().flatten()

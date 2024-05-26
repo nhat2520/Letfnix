@@ -57,7 +57,6 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 
-
 class Customer(models.Model):
     customer_id = models.UUIDField(primary_key=True,
                                    default=uuid.uuid4(),
@@ -106,7 +105,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
- 
+
 
 class Order(models.Model):
     order_id = models.UUIDField(primary_key=True,
@@ -121,7 +120,7 @@ class Order(models.Model):
                                  null=True,)
     payment = models.ForeignKey(Payment,
                                 on_delete=models.CASCADE)
-      
+
     def __str__(self):
         return self.order_id
 
@@ -167,9 +166,11 @@ class Movie(models.Model):
     def __str__(self):
         return self.name
 
+
 class Library(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
 
 class MovieCategory(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

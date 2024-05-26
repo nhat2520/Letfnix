@@ -8,9 +8,11 @@ from cart.models import CartItem  # noqa
 from .forms import AddFundsForm
 from decimal import Decimal
 
+
 # Create your views here.
 def payment_success(request):
     return render(request, 'user/payment_success.html', {})
+
 
 def billing_info(request):
     if request.user.is_authenticated:
@@ -18,10 +20,10 @@ def billing_info(request):
         profile = Profile.objects.get(user__id=request.user.id)
         print(profile.balance)
         movies = Movie.objects.filter(cartitem__user=curr_user)
-        total_price = sum(movie.price for movie in movies) 
+        total_price = sum(movie.price for movie in movies)
         return render(request, "user/bill.html", {"movies": movies,
-                                             "total_price": total_price,
-                                             "profile": profile})
+                                                  "total_price": total_price,
+                                                  "profile": profile})
     else:
         messages.success(request, "You don't have permission to do that")
         return redirect("login")
