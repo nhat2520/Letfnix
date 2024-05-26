@@ -5,6 +5,24 @@ Make sure you already have [Docker](https://docs.docker.com/engine/install/), [D
 ```bash
 cp .env.example .env
 ```
+
+### Create virtual environment
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+cd server
+```
+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+npm install cross-env
+```
+### Run debug frontend
+```bash
+python manage.py tailwind install
+python manage.py tailwind start
+```
+
 You can change all variables into your own values in .env file
 
 ### Run Postgres and Pgadmin4's Docker image
@@ -33,23 +51,6 @@ PASSWORD is `POSTGRES_PASSWORD`
 ## Run server locally
 
 Change `POSTGRES_HOST`=localhost
-
-### Create virtual environment
-```bash
-python3 -m venv .venv && source .venv/bin/activate
-cd server
-```
-
-### Install dependencies
-```bash
-pip install -r requirements.txt
-npm install cross-env
-```
-### Run debug frontend
-```bash
-python manage.py tailwind install
-python manage.py tailwind start
-```
 
 ### Migrate data into database
 ```bash
@@ -84,4 +85,4 @@ Change `POSTGRES_HOST`=db
 docker compose up -d
 ```
 
-Go to [localhost:8000/helloworld](http://localhost:8000/helloworld)
+Go to [localhost:8000](http://localhost:8000)
