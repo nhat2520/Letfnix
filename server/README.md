@@ -50,19 +50,27 @@ npm install cross-env
 python manage.py tailwind install
 python manage.py tailwind start
 ```
+
+### Migrate data into database
+```bash
+python manage.py makemigrations
+python manage.py makemigrations app
+python manage.py makemigrations cart
+python manage.py migrate
+```
+
 ### Intial Data 
 
 ```bash
 python manage.py shell
 ```
-paste this to create
+Paste this to create
 
 ```bash
 with open('initialData.py') as f:
     code = f.read()
     exec(code)
 ```
-
 
 ### Run server
 ```bash
