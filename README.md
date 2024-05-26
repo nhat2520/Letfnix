@@ -28,7 +28,7 @@ Report:
 
 ## Screenshots
 
-[![main-app.jpg](https://i.postimg.cc/6qqSJJLg/main-app.jpg)](https://postimg.cc/MfktVLLm)
+![main-app.jpg](server/images/Homepage.png)
 ## Tech Stack
 
 **Client:** Django, TailwindCss,
