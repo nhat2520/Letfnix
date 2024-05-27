@@ -35,7 +35,7 @@
                         {% if form.username.errors %}
                             <div class="text-red-500">{{ form.username.errors }}</div>
                         {% endif %}
-                        <input type="text" name="username" id="username" value="{{ form.username.value }}" placeholder="User Name" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500" style="padding-left: 12px;">
+                        <input type="text" name="username" id="username" placeholder="User Name" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500" style="padding-left: 12px;">
                     </div>
 
                     <!-- Hiển thị lỗi cho các trường first_name và last_name -->
@@ -44,13 +44,13 @@
                             {% if form.first_name.errors %}
                                 <div class="text-red-500">{{ form.first_name.errors }}</div>
                             {% endif %}
-                            <input type="text" name="first_name" id="firstname" value="{{ form.first_name.value }}" placeholder="First Name" class="w-full h-12 rounded-md bg-[rgb(51,51,51)] pl-3">
+                            <input type="text" name="first_name" id="firstname" placeholder="First Name" class="w-full h-12 rounded-md bg-[rgb(51,51,51)] pl-3">
                         </div>
                         <div>
                             {% if form.last_name.errors %}
                                 <div class="text-red-500">{{ form.last_name.errors }}</div>
                             {% endif %}
-                            <input type="text" name="last_name" id="lastname" value="{{ form.last_name.value }}" placeholder="Last Name" class="w-full h-12 rounded-md bg-[rgb(51,51,51)] pl-3">
+                            <input type="text" name="last_name" id="lastname" placeholder="Last Name" class="w-full h-12 rounded-md bg-[rgb(51,51,51)] pl-3">
                         </div>
                     </div>
                     
@@ -59,7 +59,7 @@
                         {% if form.email.errors %}
                             <div class="text-red-500">{{ form.email.errors }}</div>
                         {% endif %}
-                        <input type="email" name="email" id="email" value="{{ form.email.value }}" placeholder="Email Address" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500 border-0">
+                        <input type="email" name="email" id="email" placeholder="Email Address" class="h-12 w-full rounded-md bg-[rgb(51,51,51)] placeholder:text-gray-500 border-0">
                     </div>
 
                     <!-- Hiển thị lỗi cho trường password1 -->

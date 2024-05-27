@@ -1,7 +1,100 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-<form method="POST" action="{% url 'add_funds' %}">
+{% load static %}
+<div class="grid grid-cols-[300px_2px_850px] gap-10">
+    <div class="flex justify-center items-center">
+        <div class="w-full">
+            <div class=" h-20  flex justify-center items-center cursor-pointer">
+                <div class="text-red-600">
+                    <img src="{% static 'svg/user_red.svg' %}" alt="" class="float-left h-7">
+                    <span class="ml-3 mt-0.5 float-left text-xl font-semibold">Profile</span>
+                </div>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'library' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/movie_white.svg' %}" alt="" class="float-left h-5 mt-2">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Movie</span>
+                    </div>
+                </a>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'update_password' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/lock_white.svg' %}" alt="" class="float-left h-7 ml-9 mt-1">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Password</span>
+                    </div>
+                </a>
+            </div>
+            <div class=" h-20 flex justify-center items-center cursor-pointer">
+                <a href="{% url 'logout' %}">
+                    <div class="text-[rgb(133,133,133)]">
+                        <img src="{% static 'svg/logout.svg' %}" alt="" class="float-left h-6 ml-5 mt-1.5">
+                        <span class="ml-3 mt-1 float-left text-xl font-semibold">Log out</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="h-[500px] w-[0.5px] bg-gray-400">
+    </div>
+    <div class="h-[500px] w-[800px] overflow-y-scroll pl-52 px-40">
+        <form method="POST" action="{% url 'add_funds' %}">
+            {% csrf_token %}
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.amount.label }}</label>
+                    {{ form.amount }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_name.label }}</label>
+                    {{ form.card_name }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_number.label }}</label>
+                    {{ form.card_number }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_exp_date.label }}</label>
+                    {{ form.card_exp_date }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_cvv_number.label }}</label>
+                    {{ form.card_cvv_number }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_address1.label }}</label>
+                    {{ form.card_address1 }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_address2.label }}</label>
+                    {{ form.card_address2 }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_city.label }}</label>
+                    {{ form.card_city }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_state.label }}</label>
+                    {{ form.card_state }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_zipcode.label }}</label>
+                    {{ form.card_zipcode }}
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400">{{ form.card_country.label }}</label>
+                    {{ form.card_country }}
+                </div>
+            </div>
+            <button type="submit" class="w-full mt-6 bg-red-500 text-white p-3 rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                Add Funds
+            </button>
+        </form>
+    </div>
+</div>
+<!-- <form method="POST" action="{% url 'add_funds' %}">
     {% csrf_token %}
     <div class="space-y-6">
         <div>
@@ -52,7 +145,7 @@
     <button type="submit" class="w-full mt-6 bg-red-500 text-white p-3 rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
         Add Funds
     </button>
-</form>
+</form> -->
     
 {% endblock %}
 
