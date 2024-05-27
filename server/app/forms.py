@@ -21,7 +21,7 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
 
-        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['class'] = 'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white'
         self.fields['username'].widget.attrs['placeholder'] = 'User Name'
         self.fields['username'].label = ''
         self.fields['username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'  # noqa
@@ -39,10 +39,10 @@ class RegisterForm(UserCreationForm):
 
 class UpdateUserForm(UserChangeForm):
     password = None
-
-    email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}), required=False)  # noqa
-    first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}), required=False)  # noqa
-    last_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Last Name'}), required=False)  # noqa
+    
+    email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white', 'placeholder':'Email Address'}), required=False)  # noqa
+    first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white', 'placeholder':'First Name'}), required=False)  # noqa
+    last_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white', 'placeholder':'Last Name'}), required=False)  # noqa
 
     class Meta:
         model = User
@@ -56,7 +56,7 @@ class UpdateUserForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
 
-        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['class'] = 'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white'
         self.fields['username'].widget.attrs['placeholder'] = 'User Name'
         self.fields['username'].label = ''
         self.fields['username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'  # noqa
@@ -82,8 +82,8 @@ class ChangePasswordForm(SetPasswordForm):
 
 
 class UserInfoForm(forms.ModelForm):
-    phone_number = forms.CharField(required=False)
-    date_of_birth = forms.DateField(required=False)
+    phone_number = forms.CharField(required=False, widget=forms.TextInput(attrs={'class':'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white', 'placeholder':'Email Address'}))
+    date_of_birth = forms.DateField(required=False, widget=forms.TextInput(attrs={'class':'w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white', 'placeholder':'Email Address'}))
 
     class Meta:
         model = Profile

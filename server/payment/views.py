@@ -61,7 +61,7 @@ def processing(request):
         movies = Movie.objects.filter(cartitem__user=curr_user)
         for movie in movies:
             Library.objects.create(user=curr_user, movie=movie)
-        CartItem.objects.get(user__id=request.user.id).delete()
+        CartItem.objects.filter(user=curr_user).delete()
         return redirect('success')
     else:
         messages.success(request, "You don't have enough money, please add funds")  # noqa
