@@ -49,7 +49,6 @@ def home(request):
 
         recent_movies = Movie.objects.order_by('-vote_average')[6:12]
         print(random_movie)
-        recent_movies = Movie.objects.order_by('-vote_average')[:6]
         print(recent_movies)
         return render(request, 'app/home.html',
                       {"random_movie": random_movie,

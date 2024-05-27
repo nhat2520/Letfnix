@@ -40,16 +40,7 @@
     <div class="h-[500px] w-[0.5px] bg-gray-400">
     </div>
     <div class="">
-        <div class="flex justify-center mt-[-20px]">
-            <img src="{% static 'svg/user_white.svg' %}" alt="" class="float-left h-20 mb-2">
-        </div>
-        <div class="text-xl text-center  text-white font-semibold">Your name</div>
-        <div class="relative flex justify-center text-white font-semibold">
-            <div class="w-48 flex justify-center relative">
-                <span class="text-red-600">Current Amount: </span> <span>${{profile.balance}}</span>
-                <div class="absolute right-[-55px] mt-[-1px] bg-red-600 px-2 rounded-xl py-1 text-xs">Add + </div>
-            </div>
-        </div>
+
     
         <div class="flex justify-center items-center w-full">
             <div class="p-8 rounded-lg w-[700px]">
@@ -90,9 +81,9 @@
                             <!-- <input type="date" id="dob" name="date_of_birth" placeholder="{{profile.date_of_birth}}" class="w-full px-3 py-2 mt-1 border border-red-500 rounded bg-gray-800 text-white"> -->
                         </div>
                     </div>
-                    <button name="Cancel" type="submit" class="px-4 py-2 bg-white text-red-600 border-2 border-red-600 font-semibold rounded hover:bg-white mt-5 mr-5 text-red-600">
+                    <a href="{% url 'profile' %}" name="Cancel" type="submit" class="px-4 py-2 bg-white text-red-600 border-2 border-red-600 font-semibold rounded hover:bg-white mt-5 mr-5 text-red-600">
                         Cancel
-                    </button>
+                    </a>
                     <button name="Save" type="submit" class="px-4 py-2 bg-red-600 text-white border-2 border-red-600 font-semibold rounded hover:bg-red-700 mt-5">
                         Save
                     </button>
